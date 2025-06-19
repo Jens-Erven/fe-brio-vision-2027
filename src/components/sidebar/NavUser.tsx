@@ -1,14 +1,11 @@
 "use client";
 
 import {
-  BadgeCheck,
-  Bell,
   ChevronsUpDown,
-  CreditCard,
   LogOut,
   Moon,
   Palette,
-  Sparkles,
+  Settings,
   Sun,
 } from "lucide-react";
 
@@ -32,6 +29,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useTheme } from "@/contexts/theme-context";
+import { useNavigate } from "@tanstack/react-router";
 
 export function NavUser({
   user,
@@ -44,6 +42,7 @@ export function NavUser({
 }) {
   const { isMobile } = useSidebar();
   const { theme, mode, setTheme, toggleMode } = useTheme();
+  const navigate = useNavigate();
 
   const handleThemeChange = (
     newTheme: "default" | "modern-minimal" | "supabase"
@@ -64,6 +63,11 @@ export function NavUser({
     }
   };
 
+  const handleSignOut = () => {
+    // Navigate to login page
+    navigate({ to: "/" });
+  };
+
   return (
     <SidebarMenu>
       <SidebarMenuItem>
@@ -71,9 +75,9 @@ export function NavUser({
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton
               size="lg"
-              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground md:h-8 md:p-0"
+              className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground md:h-8 md:p-0 rounded-full"
             >
-              <Avatar className="h-8 w-8 rounded-lg">
+              <Avatar className="h-8 w-8 rounded-full">
                 <AvatarImage src={user.avatar} alt={user.name} />
                 <AvatarFallback className="rounded-lg">CN</AvatarFallback>
               </Avatar>
@@ -92,7 +96,7 @@ export function NavUser({
           >
             <DropdownMenuLabel className="p-0 font-normal">
               <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-lg">
+                <Avatar className="h-8 w-8 rounded-full">
                   <AvatarImage src={user.avatar} alt={user.name} />
                   <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
@@ -144,30 +148,18 @@ export function NavUser({
             </DropdownMenuGroup>
 
             <DropdownMenuSeparator />
-
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Sparkles />
-                Upgrade to Pro
+                <Settings />
+                Settings
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <BadgeCheck />
-                Account
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCard />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <Bell />
-                Notifications
-              </DropdownMenuItem>
-            </DropdownMenuGroup>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                handleSignOut();
+              }}
+            >
               <LogOut />
               Log out
             </DropdownMenuItem>

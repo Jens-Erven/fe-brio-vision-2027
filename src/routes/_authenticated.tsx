@@ -1,19 +1,7 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
-import { createFileRoute } from "@tanstack/react-router";
+import { TopNavBar } from "@/components/navigation/TopNavBar";
+import { AppSidebar } from "@/components/sidebar/Sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authenticated")({
   component: AuthenticatedLayout,
@@ -34,8 +22,10 @@ function AuthenticatedLayout() {
       }
     >
       <AppSidebar />
-      <SidebarInset>
-        <header className="bg-background sticky top-0 flex shrink-0 items-center gap-2 border-b p-4">
+      <SidebarInset className="flex flex-col overflow-hidden ">
+        <TopNavBar />
+
+        {/* <header className="bg-background sticky top-0 flex shrink-0 items-center gap-2 border-b p-4">
           <SidebarTrigger className="-ml-1" />
           <Separator
             orientation="vertical"
@@ -52,14 +42,9 @@ function AuthenticatedLayout() {
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>
-        </header>
+        </header> */}
         <div className="flex flex-1 flex-col gap-4 p-4">
-          {Array.from({ length: 24 }).map((_, index) => (
-            <div
-              key={index}
-              className="bg-muted/50 aspect-video h-12 w-full rounded-lg"
-            />
-          ))}
+          <Outlet />
         </div>
       </SidebarInset>
     </SidebarProvider>

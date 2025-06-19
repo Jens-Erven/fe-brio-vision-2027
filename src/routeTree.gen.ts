@@ -14,6 +14,8 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedBriowebviewRouteImport } from './routes/_authenticated/briowebview'
+import { Route as AuthenticatedRiskObjectRouteImport } from './routes/_authenticated/_risk-object'
+import { Route as AuthenticatedRiskObjectVehicleRouteImport } from './routes/_authenticated/_risk-object/vehicle'
 
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
@@ -40,18 +42,30 @@ const AuthenticatedBriowebviewRoute =
     path: '/briowebview',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedRiskObjectRoute = AuthenticatedRiskObjectRouteImport.update({
+  id: '/_risk-object',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedRiskObjectVehicleRoute =
+  AuthenticatedRiskObjectVehicleRouteImport.update({
+    id: '/vehicle',
+    path: '/vehicle',
+    getParentRoute: () => AuthenticatedRiskObjectRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/briowebview': typeof AuthenticatedBriowebviewRoute
+  '/vehicle': typeof AuthenticatedRiskObjectVehicleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/briowebview': typeof AuthenticatedBriowebviewRoute
+  '/vehicle': typeof AuthenticatedRiskObjectVehicleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -59,20 +73,24 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
+  '/_authenticated/_risk-object': typeof AuthenticatedRiskObjectRouteWithChildren
   '/_authenticated/briowebview': typeof AuthenticatedBriowebviewRoute
+  '/_authenticated/_risk-object/vehicle': typeof AuthenticatedRiskObjectVehicleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/register' | '/briowebview'
+  fullPaths: '/' | '/login' | '/register' | '/briowebview' | '/vehicle'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/register' | '/briowebview'
+  to: '/' | '/login' | '/register' | '/briowebview' | '/vehicle'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/login'
     | '/register'
+    | '/_authenticated/_risk-object'
     | '/_authenticated/briowebview'
+    | '/_authenticated/_risk-object/vehicle'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,14 +137,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedBriowebviewRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/_risk-object': {
+      id: '/_authenticated/_risk-object'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof AuthenticatedRiskObjectRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/_risk-object/vehicle': {
+      id: '/_authenticated/_risk-object/vehicle'
+      path: '/vehicle'
+      fullPath: '/vehicle'
+      preLoaderRoute: typeof AuthenticatedRiskObjectVehicleRouteImport
+      parentRoute: typeof AuthenticatedRiskObjectRoute
+    }
   }
 }
 
+interface AuthenticatedRiskObjectRouteChildren {
+  AuthenticatedRiskObjectVehicleRoute: typeof AuthenticatedRiskObjectVehicleRoute
+}
+
+const AuthenticatedRiskObjectRouteChildren: AuthenticatedRiskObjectRouteChildren =
+  {
+    AuthenticatedRiskObjectVehicleRoute: AuthenticatedRiskObjectVehicleRoute,
+  }
+
+const AuthenticatedRiskObjectRouteWithChildren =
+  AuthenticatedRiskObjectRoute._addFileChildren(
+    AuthenticatedRiskObjectRouteChildren,
+  )
+
 interface AuthenticatedRouteChildren {
+  AuthenticatedRiskObjectRoute: typeof AuthenticatedRiskObjectRouteWithChildren
   AuthenticatedBriowebviewRoute: typeof AuthenticatedBriowebviewRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedRiskObjectRoute: AuthenticatedRiskObjectRouteWithChildren,
   AuthenticatedBriowebviewRoute: AuthenticatedBriowebviewRoute,
 }
 

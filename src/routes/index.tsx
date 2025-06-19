@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -36,102 +37,104 @@ function HomeComponent() {
         </div>
       </header>
 
-      {/* Hero Section */}
+      {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold text-gray-900 sm:text-6xl">
-            Welcome to <span className="text-indigo-600">Brio Vision 2027</span>
-          </h2>
-          <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-            Your comprehensive platform for managing users, analyzing data, and
-            building the future. Experience powerful tools designed for modern
-            businesses.
-          </p>
-          <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Link to="/register">
-              <Button size="lg" className="px-8 py-4 text-lg">
-                Get Started Free
-              </Button>
-            </Link>
-            <Link to="/analytics">
-              <Button variant="outline" size="lg" className="px-8 py-4 text-lg">
-                View Dashboard
-              </Button>
-            </Link>
-          </div>
-        </div>
+        {/* Hero Section */}
+        <Card className="text-center bg-white/50 backdrop-blur-sm border-0 shadow-xl">
+          <CardHeader className="pb-8">
+            <CardTitle className="text-4xl font-bold text-gray-900 sm:text-6xl">
+              Welcome to{" "}
+              <span className="text-indigo-600">Brio Vision 2027</span>
+            </CardTitle>
+            <CardDescription className="text-xl text-gray-600 max-w-3xl mx-auto mt-6">
+              Your comprehensive platform for managing users, analyzing data,
+              and building the future. Experience powerful tools designed for
+              modern businesses.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="pb-12">
+            <div className="flex items-center justify-center gap-x-6">
+              <Link to="/register">
+                <Button size="lg" className="px-8 py-4 text-lg">
+                  Get Started Free
+                </Button>
+              </Link>
+              <Link to="/briowebview">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="px-8 py-4 text-lg"
+                >
+                  View Dashboard
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Separator className="my-16" />
 
         {/* Features Section */}
-        <div className="mt-32">
-          <div className="text-center">
-            <h3 className="text-3xl font-bold text-gray-900">
+        <Card className="bg-white/50 backdrop-blur-sm border-0 shadow-lg">
+          <CardHeader className="text-center">
+            <CardTitle className="text-3xl font-bold text-gray-900">
               Everything you need to succeed
-            </h3>
-            <p className="mt-4 text-lg text-gray-600">
+            </CardTitle>
+            <CardDescription className="text-lg text-gray-600 mt-4">
               Powerful features to help you manage and grow your business
-            </p>
-          </div>
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+              <Card className="text-center">
+                <CardHeader>
+                  <CardTitle className="text-xl">User Management</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>
+                    Comprehensive user management tools for your team
+                  </CardDescription>
+                </CardContent>
+              </Card>
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center">
-              <CardHeader>
-                <div className="text-4xl mb-4">👥</div>
-                <CardTitle>User Management</CardTitle>
-                <CardDescription>
-                  Efficiently manage users, roles, and permissions with our
-                  intuitive interface
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link to="/users">
-                  <Button variant="outline">Explore Users</Button>
-                </Link>
-              </CardContent>
-            </Card>
+              <Card className="text-center">
+                <CardHeader>
+                  <CardTitle className="text-xl">Data Analytics</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>
+                    Advanced analytics to drive business insights
+                  </CardDescription>
+                </CardContent>
+              </Card>
 
-            <Card className="text-center">
-              <CardHeader>
-                <div className="text-4xl mb-4">📊</div>
-                <CardTitle>Dashboard & Analytics</CardTitle>
-                <CardDescription>
-                  Get real-time insights with comprehensive dashboards and
-                  detailed analytics
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link to="/analytics">
-                  <Button variant="outline">View Analytics</Button>
-                </Link>
-              </CardContent>
-            </Card>
+              <Card className="text-center">
+                <CardHeader>
+                  <CardTitle className="text-xl">Future-Ready</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>
+                    Built for the challenges and opportunities of tomorrow
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            </div>
+          </CardContent>
+        </Card>
 
-            <Card className="text-center">
-              <CardHeader>
-                <div className="text-4xl mb-4">⚙️</div>
-                <CardTitle>Customizable Settings</CardTitle>
-                <CardDescription>
-                  Configure your platform to match your workflow and business
-                  needs
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link to="/settings">
-                  <Button variant="outline">Configure Settings</Button>
-                </Link>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+        <Separator className="my-16" />
 
         {/* CTA Section */}
-        <div className="mt-32 bg-indigo-600 rounded-2xl px-6 py-16 text-center">
-          <h3 className="text-3xl font-bold text-white">
-            Ready to get started?
-          </h3>
-          <p className="mt-4 text-xl text-indigo-100">
-            Join thousands of companies already using Brio Vision 2027
-          </p>
-          <div className="mt-8">
+        <Card className="bg-gradient-to-r from-indigo-600 to-purple-600 border-0 shadow-xl">
+          <CardHeader className="text-center">
+            <CardTitle className="text-3xl font-bold text-white">
+              Ready to get started?
+            </CardTitle>
+            <CardDescription className="text-xl text-indigo-100 mt-4">
+              Join thousands of companies already using Brio Vision 2027
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="text-center pb-12">
             <Link to="/register">
               <Button
                 size="lg"
@@ -141,19 +144,25 @@ function HomeComponent() {
                 Start Your Free Trial
               </Button>
             </Link>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
       </main>
+
+      <Separator />
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="text-center">
-            <h4 className="text-lg font-semibold">Brio Vision 2027</h4>
-            <p className="mt-2 text-gray-400">
-              Building the future of business management
-            </p>
-          </div>
+          <Card className="bg-transparent border-0">
+            <CardContent className="text-center">
+              <CardTitle className="text-lg font-semibold text-white">
+                Brio Vision 2027
+              </CardTitle>
+              <CardDescription className="mt-2 text-gray-400">
+                Building the future of business management
+              </CardDescription>
+            </CardContent>
+          </Card>
         </div>
       </footer>
     </div>
