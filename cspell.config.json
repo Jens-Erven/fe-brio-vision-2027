@@ -1,0 +1,93 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "vitejs",
+    "vite",
+    "oxlint",
+    "tanstack",
+    "tailwindcss",
+    "classname",
+    "classnames",
+    "href",
+    "onclick",
+    "onchange",
+    "onsubmit",
+    "onkeydown",
+    "onkeyup",
+    "onmousedown",
+    "onmouseup",
+    "tabindex",
+    "readonly",
+    "typeof",
+    "keyof",
+    "instanceof",
+    "const",
+    "readonly",
+    "dirname",
+    "filename",
+    "tsx",
+    "jsx",
+    "tsconfig",
+    "eslintrc",
+    "prettierrc",
+    "gitignore",
+    "devtool",
+    "devtools",
+    "sourcemap",
+    "bundler",
+    "transpile",
+    "polyfill",
+    "async",
+    "await",
+    "destructure",
+    "destructuring",
+    "refactor",
+    "refactoring",
+    "shadcn",
+    "radix",
+    "lucide",
+    "cva",
+    "clsx",
+    "twmerge"
+  ],
+  "flagWords": [],
+  "ignorePaths": [
+    "node_modules/**",
+    "dist/**",
+    "build/**",
+    "coverage/**",
+    "*.min.js",
+    "*.min.css",
+    "package-lock.json",
+    "routeTree.gen.ts"
+  ],
+  "ignoreRegExpList": [
+    "/#.*/g",
+    "/\\\\x[0-9a-f]{2}/gi",
+    "/\\\\u[0-9a-f]{4}/gi",
+    "/\\\\[uU][0-9a-fA-F]{4,8}/g",
+    "/0x[0-9a-fA-F]+/g",
+    "/[0-9]+px/g",
+    "/rgba?\\([^)]*\\)/g",
+    "/hsla?\\([^)]*\\)/g"
+  ],
+  "languageSettings": [
+    {
+      "languageId": "typescript,javascript,typescriptreact,javascriptreact",
+      "ignoreRegExpList": [
+        "/import\\s+.*from\\s+['\"][^'\"]*['\"];?/g",
+        "/export\\s+.*from\\s+['\"][^'\"]*['\"];?/g"
+      ]
+    }
+  ],
+  "overrides": [
+    {
+      "filename": "**/*.{ts,tsx,js,jsx}",
+      "ignoreRegExpList": [
+        "/\\bclassName\\s*=\\s*['\"][^'\"]*['\"]/g",
+        "/\\bstyle\\s*=\\s*\\{[^}]*\\}/g"
+      ]
+    }
+  ]
+}
