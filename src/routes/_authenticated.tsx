@@ -1,5 +1,5 @@
 import { TopNavBar } from "@/components/navigation/TopNavBar";
-import { AppSidebar } from "@/components/sidebar/Sidebar";
+import { AppSidebar } from "@/components/sidebar/AppSidebar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { createFileRoute, Outlet } from "@tanstack/react-router";
 
@@ -43,7 +43,7 @@ function AuthenticatedLayout() {
             </BreadcrumbList>
           </Breadcrumb>
         </header> */}
-        <div className="flex flex-1 flex-col gap-4 p-4">
+        <div className="flex flex-1   ">
           <Outlet />
         </div>
       </SidebarInset>
