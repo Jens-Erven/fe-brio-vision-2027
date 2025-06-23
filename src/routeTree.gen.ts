@@ -15,7 +15,11 @@ import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedBriowebviewRouteImport } from './routes/_authenticated/briowebview'
 import { Route as AuthenticatedRiskObjectRouteImport } from './routes/_authenticated/_risk-object'
-import { Route as AuthenticatedRiskObjectVehicleRouteImport } from './routes/_authenticated/_risk-object/vehicle'
+import { Route as AuthenticatedRiskObjectVehicleRouteRouteImport } from './routes/_authenticated/_risk-object/vehicle/route'
+import { Route as AuthenticatedRiskObjectVehicleRelatiesRouteImport } from './routes/_authenticated/_risk-object/vehicle/relaties'
+import { Route as AuthenticatedRiskObjectVehicleKlantgegevensRouteImport } from './routes/_authenticated/_risk-object/vehicle/klantgegevens'
+import { Route as AuthenticatedRiskObjectVehicleDossierRouteImport } from './routes/_authenticated/_risk-object/vehicle/dossier'
+import { Route as AuthenticatedRiskObjectVehicleDataverwerkingRouteImport } from './routes/_authenticated/_risk-object/vehicle/dataverwerking'
 
 const RegisterRoute = RegisterRouteImport.update({
   id: '/register',
@@ -46,11 +50,35 @@ const AuthenticatedRiskObjectRoute = AuthenticatedRiskObjectRouteImport.update({
   id: '/_risk-object',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
-const AuthenticatedRiskObjectVehicleRoute =
-  AuthenticatedRiskObjectVehicleRouteImport.update({
+const AuthenticatedRiskObjectVehicleRouteRoute =
+  AuthenticatedRiskObjectVehicleRouteRouteImport.update({
     id: '/vehicle',
     path: '/vehicle',
     getParentRoute: () => AuthenticatedRiskObjectRoute,
+  } as any)
+const AuthenticatedRiskObjectVehicleRelatiesRoute =
+  AuthenticatedRiskObjectVehicleRelatiesRouteImport.update({
+    id: '/relaties',
+    path: '/relaties',
+    getParentRoute: () => AuthenticatedRiskObjectVehicleRouteRoute,
+  } as any)
+const AuthenticatedRiskObjectVehicleKlantgegevensRoute =
+  AuthenticatedRiskObjectVehicleKlantgegevensRouteImport.update({
+    id: '/klantgegevens',
+    path: '/klantgegevens',
+    getParentRoute: () => AuthenticatedRiskObjectVehicleRouteRoute,
+  } as any)
+const AuthenticatedRiskObjectVehicleDossierRoute =
+  AuthenticatedRiskObjectVehicleDossierRouteImport.update({
+    id: '/dossier',
+    path: '/dossier',
+    getParentRoute: () => AuthenticatedRiskObjectVehicleRouteRoute,
+  } as any)
+const AuthenticatedRiskObjectVehicleDataverwerkingRoute =
+  AuthenticatedRiskObjectVehicleDataverwerkingRouteImport.update({
+    id: '/dataverwerking',
+    path: '/dataverwerking',
+    getParentRoute: () => AuthenticatedRiskObjectVehicleRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -58,14 +86,22 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/briowebview': typeof AuthenticatedBriowebviewRoute
-  '/vehicle': typeof AuthenticatedRiskObjectVehicleRoute
+  '/vehicle': typeof AuthenticatedRiskObjectVehicleRouteRouteWithChildren
+  '/vehicle/dataverwerking': typeof AuthenticatedRiskObjectVehicleDataverwerkingRoute
+  '/vehicle/dossier': typeof AuthenticatedRiskObjectVehicleDossierRoute
+  '/vehicle/klantgegevens': typeof AuthenticatedRiskObjectVehicleKlantgegevensRoute
+  '/vehicle/relaties': typeof AuthenticatedRiskObjectVehicleRelatiesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
   '/briowebview': typeof AuthenticatedBriowebviewRoute
-  '/vehicle': typeof AuthenticatedRiskObjectVehicleRoute
+  '/vehicle': typeof AuthenticatedRiskObjectVehicleRouteRouteWithChildren
+  '/vehicle/dataverwerking': typeof AuthenticatedRiskObjectVehicleDataverwerkingRoute
+  '/vehicle/dossier': typeof AuthenticatedRiskObjectVehicleDossierRoute
+  '/vehicle/klantgegevens': typeof AuthenticatedRiskObjectVehicleKlantgegevensRoute
+  '/vehicle/relaties': typeof AuthenticatedRiskObjectVehicleRelatiesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -75,13 +111,35 @@ export interface FileRoutesById {
   '/register': typeof RegisterRoute
   '/_authenticated/_risk-object': typeof AuthenticatedRiskObjectRouteWithChildren
   '/_authenticated/briowebview': typeof AuthenticatedBriowebviewRoute
-  '/_authenticated/_risk-object/vehicle': typeof AuthenticatedRiskObjectVehicleRoute
+  '/_authenticated/_risk-object/vehicle': typeof AuthenticatedRiskObjectVehicleRouteRouteWithChildren
+  '/_authenticated/_risk-object/vehicle/dataverwerking': typeof AuthenticatedRiskObjectVehicleDataverwerkingRoute
+  '/_authenticated/_risk-object/vehicle/dossier': typeof AuthenticatedRiskObjectVehicleDossierRoute
+  '/_authenticated/_risk-object/vehicle/klantgegevens': typeof AuthenticatedRiskObjectVehicleKlantgegevensRoute
+  '/_authenticated/_risk-object/vehicle/relaties': typeof AuthenticatedRiskObjectVehicleRelatiesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/register' | '/briowebview' | '/vehicle'
+  fullPaths:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/briowebview'
+    | '/vehicle'
+    | '/vehicle/dataverwerking'
+    | '/vehicle/dossier'
+    | '/vehicle/klantgegevens'
+    | '/vehicle/relaties'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/register' | '/briowebview' | '/vehicle'
+  to:
+    | '/'
+    | '/login'
+    | '/register'
+    | '/briowebview'
+    | '/vehicle'
+    | '/vehicle/dataverwerking'
+    | '/vehicle/dossier'
+    | '/vehicle/klantgegevens'
+    | '/vehicle/relaties'
   id:
     | '__root__'
     | '/'
@@ -91,6 +149,10 @@ export interface FileRouteTypes {
     | '/_authenticated/_risk-object'
     | '/_authenticated/briowebview'
     | '/_authenticated/_risk-object/vehicle'
+    | '/_authenticated/_risk-object/vehicle/dataverwerking'
+    | '/_authenticated/_risk-object/vehicle/dossier'
+    | '/_authenticated/_risk-object/vehicle/klantgegevens'
+    | '/_authenticated/_risk-object/vehicle/relaties'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -148,19 +210,72 @@ declare module '@tanstack/react-router' {
       id: '/_authenticated/_risk-object/vehicle'
       path: '/vehicle'
       fullPath: '/vehicle'
-      preLoaderRoute: typeof AuthenticatedRiskObjectVehicleRouteImport
+      preLoaderRoute: typeof AuthenticatedRiskObjectVehicleRouteRouteImport
       parentRoute: typeof AuthenticatedRiskObjectRoute
+    }
+    '/_authenticated/_risk-object/vehicle/relaties': {
+      id: '/_authenticated/_risk-object/vehicle/relaties'
+      path: '/relaties'
+      fullPath: '/vehicle/relaties'
+      preLoaderRoute: typeof AuthenticatedRiskObjectVehicleRelatiesRouteImport
+      parentRoute: typeof AuthenticatedRiskObjectVehicleRouteRoute
+    }
+    '/_authenticated/_risk-object/vehicle/klantgegevens': {
+      id: '/_authenticated/_risk-object/vehicle/klantgegevens'
+      path: '/klantgegevens'
+      fullPath: '/vehicle/klantgegevens'
+      preLoaderRoute: typeof AuthenticatedRiskObjectVehicleKlantgegevensRouteImport
+      parentRoute: typeof AuthenticatedRiskObjectVehicleRouteRoute
+    }
+    '/_authenticated/_risk-object/vehicle/dossier': {
+      id: '/_authenticated/_risk-object/vehicle/dossier'
+      path: '/dossier'
+      fullPath: '/vehicle/dossier'
+      preLoaderRoute: typeof AuthenticatedRiskObjectVehicleDossierRouteImport
+      parentRoute: typeof AuthenticatedRiskObjectVehicleRouteRoute
+    }
+    '/_authenticated/_risk-object/vehicle/dataverwerking': {
+      id: '/_authenticated/_risk-object/vehicle/dataverwerking'
+      path: '/dataverwerking'
+      fullPath: '/vehicle/dataverwerking'
+      preLoaderRoute: typeof AuthenticatedRiskObjectVehicleDataverwerkingRouteImport
+      parentRoute: typeof AuthenticatedRiskObjectVehicleRouteRoute
     }
   }
 }
 
+interface AuthenticatedRiskObjectVehicleRouteRouteChildren {
+  AuthenticatedRiskObjectVehicleDataverwerkingRoute: typeof AuthenticatedRiskObjectVehicleDataverwerkingRoute
+  AuthenticatedRiskObjectVehicleDossierRoute: typeof AuthenticatedRiskObjectVehicleDossierRoute
+  AuthenticatedRiskObjectVehicleKlantgegevensRoute: typeof AuthenticatedRiskObjectVehicleKlantgegevensRoute
+  AuthenticatedRiskObjectVehicleRelatiesRoute: typeof AuthenticatedRiskObjectVehicleRelatiesRoute
+}
+
+const AuthenticatedRiskObjectVehicleRouteRouteChildren: AuthenticatedRiskObjectVehicleRouteRouteChildren =
+  {
+    AuthenticatedRiskObjectVehicleDataverwerkingRoute:
+      AuthenticatedRiskObjectVehicleDataverwerkingRoute,
+    AuthenticatedRiskObjectVehicleDossierRoute:
+      AuthenticatedRiskObjectVehicleDossierRoute,
+    AuthenticatedRiskObjectVehicleKlantgegevensRoute:
+      AuthenticatedRiskObjectVehicleKlantgegevensRoute,
+    AuthenticatedRiskObjectVehicleRelatiesRoute:
+      AuthenticatedRiskObjectVehicleRelatiesRoute,
+  }
+
+const AuthenticatedRiskObjectVehicleRouteRouteWithChildren =
+  AuthenticatedRiskObjectVehicleRouteRoute._addFileChildren(
+    AuthenticatedRiskObjectVehicleRouteRouteChildren,
+  )
+
 interface AuthenticatedRiskObjectRouteChildren {
-  AuthenticatedRiskObjectVehicleRoute: typeof AuthenticatedRiskObjectVehicleRoute
+  AuthenticatedRiskObjectVehicleRouteRoute: typeof AuthenticatedRiskObjectVehicleRouteRouteWithChildren
 }
 
 const AuthenticatedRiskObjectRouteChildren: AuthenticatedRiskObjectRouteChildren =
   {
-    AuthenticatedRiskObjectVehicleRoute: AuthenticatedRiskObjectVehicleRoute,
+    AuthenticatedRiskObjectVehicleRouteRoute:
+      AuthenticatedRiskObjectVehicleRouteRouteWithChildren,
   }
 
 const AuthenticatedRiskObjectRouteWithChildren =
