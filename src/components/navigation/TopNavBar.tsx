@@ -1,5 +1,11 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { ArrowLeftRight, History, PlusIcon, Workflow } from "lucide-react";
+import {
+  ArrowLeftRight,
+  History,
+  PlusIcon,
+  Search,
+  Workflow,
+} from "lucide-react";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -149,6 +155,7 @@ export const TopNavBar: React.FC = () => {
         onSubmit={handleSearchSubmit}
         className="relative flex items-center max-w-lg w-full sm:w-[500px]"
       >
+        <Search className="absolute left-2 h-4 w-4 text-gray-500" />
         <Input
           className="pl-8 pr-8"
           aria-label="Zoek"

@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute(
-  "/_authenticated/_risk-object/vehicle/klantgegevens"
+  "/_authenticated/_party/policy-holder/relations"
 )({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  return <div>Hello "/_authenticated/_risk-object/vehicle/klantgegevens"!</div>;
+  return <div>relations</div>;
 }

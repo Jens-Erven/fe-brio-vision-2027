@@ -24,9 +24,9 @@ code {
 
 /* Theme variables will be applied by theme-specific classes */
 
-@theme {
+/* @theme {
   --color-*: initial;
-}
+} */
 
 @theme inline {
   --color-background: var(--background);
