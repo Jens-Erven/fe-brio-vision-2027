@@ -5,9 +5,5 @@ export const Route = createFileRoute("/_authenticated/_risk-object")({
 });
 
 function RiskObjectLayout() {
-  return (
-    <div className="flex h-full w-full gap-4 p-4">
-      <Outlet />
-    </div>
-  );
+  return <Outlet />;
 }

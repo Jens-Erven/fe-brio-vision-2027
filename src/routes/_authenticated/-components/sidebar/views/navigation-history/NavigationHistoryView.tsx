@@ -50,10 +50,7 @@ export function NavigationHistoryView(): React.JSX.Element {
 
   // Subscribe to router navigation events
   React.useEffect(() => {
-    console.log("Setting up navigation history subscription...");
-
     const unsubscribe = router.subscribe("onResolved", (event) => {
-      console.log("Navigation event received:", event);
       const { toLocation } = event;
 
       // Create new entry for any navigation
@@ -67,12 +64,9 @@ export function NavigationHistoryView(): React.JSX.Element {
             : undefined,
       };
 
-      console.log("Creating new history entry:", newEntry);
-
       setHistory((prev) => {
         // Avoid duplicates for consecutive same routes
         if (prev.length > 0 && prev[0].path === newEntry.path) {
-          console.log("Skipping duplicate entry for same path");
           return prev;
         }
 
@@ -81,10 +75,6 @@ export function NavigationHistoryView(): React.JSX.Element {
         // Save to localStorage
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-          console.log(
-            "Saved history to localStorage, total entries:",
-            updated.length
-          );
         } catch (error) {
           console.warn(
             "Failed to save navigation history to localStorage:",
@@ -105,7 +95,6 @@ export function NavigationHistoryView(): React.JSX.Element {
     );
 
     return () => {
-      console.log("Cleaning up navigation history subscriptions");
       unsubscribe();
       unsubscribeBeforeNavigate();
     };
@@ -114,7 +103,6 @@ export function NavigationHistoryView(): React.JSX.Element {
   // Add current location to history on mount if not already present
   React.useEffect(() => {
     const currentLocation = router.state.location;
-    console.log("Current location on mount:", currentLocation);
 
     if (currentLocation && currentLocation.pathname !== "/") {
       const currentEntry: NavigationHistoryEntry = {
@@ -150,7 +138,6 @@ export function NavigationHistoryView(): React.JSX.Element {
   const clearHistory = () => {
     setHistory([]);
     localStorage.removeItem(STORAGE_KEY);
-    console.log("Navigation history cleared");
   };
 
   const navigateToRoute = (
@@ -158,7 +145,6 @@ export function NavigationHistoryView(): React.JSX.Element {
     params?: Record<string, any>,
     search?: Record<string, any>
   ) => {
-    console.log("Navigating to:", { path, search });
     router.navigate({
       to: path,
       ...(search && { search }),
@@ -192,15 +178,13 @@ export function NavigationHistoryView(): React.JSX.Element {
     return routeTitles[path] || path;
   };
 
-  console.log("Current history length:", history.length);
-
   return (
     <Card className="h-full flex flex-col">
       <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Clock className="h-4 w-4 text-muted-foreground" />
-            <CardTitle className="text-sm font-medium">
+        <div className="flex items-center justify-between min-w-0">
+          <div className="flex items-center gap-2 min-w-0 flex-1">
+            <Clock className="h-4 w-4 text-muted-foreground flex-shrink-0" />
+            <CardTitle className="text-sm font-medium truncate">
               Navigation History
             </CardTitle>
           </div>
@@ -209,14 +193,14 @@ export function NavigationHistoryView(): React.JSX.Element {
               variant="ghost"
               size="sm"
               onClick={clearHistory}
-              className="h-6 px-2 text-xs"
+              className="h-6 px-2 text-xs flex-shrink-0"
             >
               <RotateCcw className="h-3 w-3 mr-1" />
               Clear
             </Button>
           )}
         </div>
-        <CardDescription className="text-xs">
+        <CardDescription className="text-xs truncate">
           Recent navigation history ({history.length} entries)
         </CardDescription>
       </CardHeader>
@@ -227,46 +211,46 @@ export function NavigationHistoryView(): React.JSX.Element {
             <div className="flex flex-col items-center justify-center py-8 text-center text-muted-foreground">
               <Clock className="h-8 w-8 mb-2 opacity-50" />
               <p className="text-sm">No navigation history yet</p>
-              <p className="text-xs mt-1">
+              <p className="text-xs mt-1 px-2 leading-relaxed">
                 Navigate to different pages to see your history
               </p>
             </div>
           ) : (
             <div className="space-y-2">
               {history.map((entry, index) => (
-                <div key={entry.id}>
+                <div key={entry.id} className="min-w-0">
                   <div
-                    className="group flex items-center justify-between p-2 rounded-md hover:bg-muted/50 cursor-pointer transition-colors"
+                    className="group flex items-start justify-between p-2 rounded-md hover:bg-muted/50 cursor-pointer transition-colors min-w-0 w-full"
                     onClick={() =>
                       navigateToRoute(entry.path, entry.params, entry.search)
                     }
                   >
-                    <div className="flex items-center gap-2 flex-1 min-w-0">
-                      <div className="flex-shrink-0">
+                    <div className="flex items-start gap-2 flex-1 min-w-0 overflow-hidden">
+                      <div className="flex-shrink-0 mt-0.5">
                         {entry.path === "/" ? (
                           <Home className="h-3 w-3 text-muted-foreground" />
                         ) : (
                           <ExternalLink className="h-3 w-3 text-muted-foreground" />
                         )}
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-xs font-medium truncate">
+                      <div className="flex-1 min-w-0 overflow-hidden w-full max-w-0">
+                        <div className="text-xs font-medium truncate max-w-full">
                           {getRouteTitle(entry.path)}
                         </div>
-                        <div className="text-xs text-muted-foreground truncate">
+                        <div className="text-xs text-muted-foreground truncate max-w-full">
                           {entry.path}
                         </div>
                         {entry.search && (
-                          <div className="text-xs text-muted-foreground/70 truncate">
+                          <div className="text-xs text-muted-foreground/70 truncate max-w-full">
                             ?{new URLSearchParams(entry.search).toString()}
                           </div>
                         )}
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 flex-shrink-0">
+                    <div className="flex items-center gap-2 flex-shrink-0 ml-2">
                       <Badge
                         variant="outline"
-                        className="text-xs px-1 py-0 h-5"
+                        className="text-xs px-1 py-0 h-5 whitespace-nowrap flex-shrink-0"
                       >
                         {formatTimestamp(entry.timestamp)}
                       </Badge>

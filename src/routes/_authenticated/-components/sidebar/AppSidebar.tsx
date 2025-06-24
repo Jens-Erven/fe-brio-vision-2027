@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 import * as React from "react";
 
-import { NavUser } from "@/components/sidebar/NavUser";
 import {
   Sidebar,
   SidebarContent,
@@ -23,7 +22,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Button } from "../ui/button";
+import { NavUser } from "@/routes/_authenticated/-components/sidebar/NavUser";
+import { Button } from "../../../../components/ui/button";
 import { AssistantView } from "./views/assistant/AssistantView";
 import { CustomerMessagesView } from "./views/customer-messages/CustomerMessagesView";
 import { DataProcessingView } from "./views/data-processing/DataProcessingView";

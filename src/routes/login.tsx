@@ -28,11 +28,6 @@ export const Route = createFileRoute("/login")({
 function LoginComponent() {
   const { theme, mode, setTheme, toggleMode } = useTheme();
 
-  const handleLogin = () => {
-    // Handle login logic here
-    console.log("Login clicked");
-  };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-background relative">
       {/* Theme Selector */}
@@ -98,9 +93,7 @@ function LoginComponent() {
               placeholder="Enter your password"
             />
           </div>
-          <Button onClick={handleLogin} className="w-full">
-            Sign In
-          </Button>
+          <Button className="w-full">Sign In</Button>
           <div className="text-center">
             <a
               href="/register"

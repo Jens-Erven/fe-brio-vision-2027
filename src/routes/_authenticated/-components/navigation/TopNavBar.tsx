@@ -7,8 +7,8 @@ import {
   Workflow,
 } from "lucide-react";
 import React, { useState } from "react";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Button } from "../../../../components/ui/button";
+import { Input } from "../../../../components/ui/input";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -16,8 +16,8 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-} from "../ui/navigation-menu";
-import { Separator } from "../ui/separator";
+} from "../../../../components/ui/navigation-menu";
+import { Separator } from "../../../../components/ui/separator";
 
 interface TopNavBarProps {
   title: string;
@@ -66,9 +66,9 @@ export const TopNavBar: React.FC = () => {
     if (searchValue.trim()) {
       // Navigate to the dynamic vehicle route
       navigate({
-        to: "/vehicle",
-        search: {
-          q: searchValue.trim(),
+        to: "/vehicle/$vehicleId",
+        params: {
+          vehicleId: "1",
         },
       });
 

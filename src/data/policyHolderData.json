@@ -1,0 +1,149 @@
+{
+  "user": {
+    "name": "Poelmans Peter",
+    "initials": "PP",
+    "avatar": "/placeholder-user.jpg",
+    "status": {
+      "label": "Om te verzorgen",
+      "variant": "warning"
+    }
+  },
+  "statusBadges": [
+    {
+      "title": "Klantenfiche",
+      "value": "12/11/23",
+      "variant": "success",
+      "hasCheck": true
+    },
+    {
+      "title": "MyBroker",
+      "value": "Actief",
+      "variant": "success",
+      "hasCheck": true
+    },
+    {
+      "title": "AML Hoog",
+      "value": null,
+      "variant": "danger",
+      "hasDot": true
+    }
+  ],
+  "internBeheer": {
+    "title": "Intern beheer",
+    "fields": [
+      {
+        "label": "Beheerder",
+        "value": "Bart Quinten (BAQ)"
+      },
+      {
+        "label": "Comm. afgevaardigde",
+        "value": "Leonard Jules (158756)"
+      },
+      {
+        "label": "Schadebeheerder",
+        "value": "Pieter Oversteyns (PiOv)"
+      },
+      {
+        "label": "Portefeuille",
+        "value": "Demol"
+      }
+    ]
+  },
+  "klantgegevens": {
+    "title": "Klantgegevens",
+    "fields": [
+      {
+        "label": "Kantoor - Nr van kantoor...",
+        "value": "+32 (0)2 661 41 66",
+        "isClickable": true
+      },
+      {
+        "label": "E-mail",
+        "value": "peter.poelmans@portim...",
+        "isClickable": true
+      },
+      {
+        "label": "Hoofdadres",
+        "value": "Hoofdstraat 28, 3500...",
+        "isClickable": true
+      },
+      {
+        "label": "Geboortedatum",
+        "value": "10/08/1960",
+        "isClickable": false
+      },
+      {
+        "label": "Leeftijd",
+        "value": "62 jaar",
+        "isClickable": false
+      },
+      {
+        "label": "Geslacht",
+        "value": "Mannelijk",
+        "isClickable": false
+      },
+      {
+        "label": "Burg.staat",
+        "value": "Gehuwd",
+        "isClickable": false
+      },
+      {
+        "label": "Nationaliteit",
+        "value": "Belgische",
+        "isClickable": false
+      },
+      {
+        "label": "Rijksregisternummer",
+        "value": "60.08.10-255.82",
+        "isClickable": false
+      },
+      {
+        "label": "Identiteitskaart nr.",
+        "value": "592-1369781-28",
+        "isClickable": false
+      },
+      {
+        "label": "Einddatum",
+        "value": "16/06/2025",
+        "isClickable": false
+      },
+      {
+        "label": "Rijbewijs",
+        "value": "21/01/1982 (38 j.)",
+        "isClickable": false
+      },
+      {
+        "label": "Einddatum",
+        "value": "-",
+        "isClickable": false
+      },
+      {
+        "label": "Bestuurder sinds",
+        "value": "-",
+        "isClickable": false
+      },
+      {
+        "label": "Rekeningnummer",
+        "value": "BE30 0000 0000 1111",
+        "isClickable": false
+      }
+    ]
+  },
+  "tags": {
+    "title": "Tags",
+    "items": [
+      {
+        "label": "Om te binden",
+        "variant": "blue"
+      },
+      {
+        "label": "Sympathiek",
+        "variant": "gray"
+      },
+      {
+        "label": "Test",
+        "variant": "gray"
+      }
+    ]
+  }
+}
