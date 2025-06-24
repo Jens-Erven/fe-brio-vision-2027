@@ -86,7 +86,7 @@ export const Route = createFileRoute(
 // Loading component to show while data is being fetched
 function VehicleLoadingComponent() {
   return (
-    <div className="flex flex-col gap-2 border border-border rounded-lg h-full w-full">
+    <div className="flex flex-col border border-border rounded-lg h-full w-full">
       <header className="flex w-full flex-col">
         <section className="flex flex-row justify-between gap-2 p-4">
           <div className="flex items-center gap-2">
@@ -102,48 +102,62 @@ function VehicleLoadingComponent() {
             <Skeleton className="h-10 w-40" />
           </div>
         </section>
-        <section className="flex flex-row gap-2 p-4">
-          <div className="flex items-center gap-3">
-            <Skeleton className="h-7 w-24" />
-            <Skeleton className="h-7 w-16" />
-            <Skeleton className="h-7 w-20" />
+        <section className="w-full flex flex-row justify-start gap-4 p-4">
+          {/* Badge skeletons matching HeaderBadge layout */}
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-4 w-4" />
+            <Skeleton className="h-6 w-20" />
+          </div>
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-4 w-4" />
+            <Skeleton className="h-6 w-12" />
+          </div>
+          <div className="flex items-center gap-2">
+            <Skeleton className="h-4 w-4" />
+            <Skeleton className="h-6 w-16" />
           </div>
         </section>
       </header>
+
       <Separator />
-      <div className="flex flex-col gap-2 border border-border rounded-lg h-full">
-        <div className="border-b border-border flex-shrink-0">
-          <nav className="flex w-full" aria-label="Vehicle tabs">
-            {[1, 2, 3, 4].map((index) => (
-              <div
-                key={index}
-                className="flex-1 border-b-2 border-transparent py-2 px-4 flex items-center justify-center"
-              >
-                <Skeleton className="h-4 w-20" />
-              </div>
-            ))}
-          </nav>
+
+      <div className="flex flex-col gap-2 h-full">
+        {/* Tabs skeleton matching actual Tabs structure */}
+        <div className="grid grid-cols-4 h-auto bg-transparent p-1 rounded-lg mx-4 mt-4">
+          {[1, 2, 3, 4].map((index) => (
+            <div
+              key={index}
+              className="flex items-center justify-center py-2 px-3"
+            >
+              <Skeleton className="h-4 w-20" />
+            </div>
+          ))}
         </div>
-        <div className="flex-1 p-6">
-          <div className="space-y-4">
+
+        {/* TabsContent skeleton */}
+        <div className="mt-0 p-4 flex-1">
+          <div className="space-y-6">
             <Skeleton className="h-8 w-64" />
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-24" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <Skeleton className="h-5 w-24" />
                 <Skeleton className="h-10 w-full" />
               </div>
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-24" />
+              <div className="space-y-3">
+                <Skeleton className="h-5 w-24" />
                 <Skeleton className="h-10 w-full" />
               </div>
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-24" />
+              <div className="space-y-3">
+                <Skeleton className="h-5 w-24" />
                 <Skeleton className="h-10 w-full" />
               </div>
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-24" />
+              <div className="space-y-3">
+                <Skeleton className="h-5 w-24" />
                 <Skeleton className="h-10 w-full" />
               </div>
+            </div>
+            <div className="pt-4">
+              <Skeleton className="h-32 w-full" />
             </div>
           </div>
         </div>
