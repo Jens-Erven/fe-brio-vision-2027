@@ -1,5 +1,5 @@
+import { Button } from "@/components/ui";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -283,20 +283,16 @@ function VehicleLayoutComponent() {
       </header>
 
       <Separator />
-      <div className="flex flex-col gap-2 h-full">
+      <div className="flex-1 overflow-y-auto p-4">
         <Tabs value={getCurrentTab()} onValueChange={handleTabChange}>
-          <TabsList className="grid  grid-cols-4 h-auto bg-transparent p-1 rounded-lg mx-4 mt-4">
+          <TabsList className="flex flex-row gap-2 bg-transparent">
             {tabs.map((tab) => (
-              <TabsTrigger
-                key={tab.value}
-                value={tab.value}
-                className="data-[state=active]:bg-secondary data-[state=active]:shadow-sm"
-              >
+              <TabsTrigger key={tab.value} value={tab.value}>
                 {tab.label}
               </TabsTrigger>
             ))}
           </TabsList>
-          <TabsContent value={getCurrentTab()} className="mt-0 p-4">
+          <TabsContent value={getCurrentTab()} className="mt-0 p-4 flex-1">
             <Outlet />
           </TabsContent>
         </Tabs>

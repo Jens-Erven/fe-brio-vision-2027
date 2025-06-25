@@ -1,12 +1,13 @@
+import { Badge, Button } from "@/components/ui";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 
 import policyHolderData from "@/data/policyHolderData.json";
 import {
+  Bell,
   Check,
+  ChevronRight,
   Mail,
   Menu,
   MessageCircle,
@@ -15,19 +16,6 @@ import {
   Share2,
   X,
 } from "lucide-react";
-
-const getStatusBadgeClasses = (variant: string): string => {
-  switch (variant) {
-    case "success":
-      return "bg-teal-100 text-teal-800 hover:bg-teal-100 border-teal-200";
-    case "warning":
-      return "bg-yellow-100 text-yellow-800 hover:bg-yellow-100 border-yellow-200";
-    case "danger":
-      return "bg-red-100 text-red-800 hover:bg-red-100 border-red-200";
-    default:
-      return "bg-gray-100 text-gray-800 hover:bg-gray-100 border-gray-200";
-  }
-};
 
 const getTagClasses = (variant: string): string => {
   switch (variant) {
@@ -40,44 +28,30 @@ const getTagClasses = (variant: string): string => {
   }
 };
 
-interface Tab {
-  label: string;
-  path: string;
-  value: string;
-}
+const renderIcon = (iconName: string | undefined) => {
+  if (!iconName) return null;
 
-const tabs: Tab[] = [
-  {
-    label: "Kerngegevens",
-    path: "/vehicle/$vehicleId/general",
-    value: "general",
-  },
-  {
-    label: "Betrokkenen",
-    path: "/vehicle/$vehicleId/parties",
-    value: "parties",
-  },
-  {
-    label: "Toebehoren",
-    path: "/vehicle/$vehicleId/accessories",
-    value: "accessories",
-  },
-  {
-    label: "Rijhulpsystemen",
-    path: "/vehicle/$vehicleId/driving-aid",
-    value: "driving-aid",
-  },
-];
+  const iconProps = "w-2.5 h-2.5 sm:w-3 sm:h-3 flex-shrink-0";
+
+  switch (iconName) {
+    case "Check":
+      return <Check className={`${iconProps} text-green-600`} />;
+    case "Bell":
+      return <Bell className={`${iconProps} text-red-500`} />;
+    default:
+      return null;
+  }
+};
 
 export default function PolicyHolderLeftPanel() {
   return (
-    <Card className=" max-w-sm bg-white text-sm flex flex-col h-full w-1/5 p-0 ">
-      <CardContent className="flex flex-col h-full  py-2  overflow-hidden p-0">
+    <Card className=" max-w-sm  text-sm flex flex-col h-full w-1/5 p-0 bg-card text-card-foreground">
+      <CardContent className="flex flex-col h-full py-2  overflow-hidden p-0">
         {/* Header Section - Fixed at top */}
 
         <header className="flex flex-col gap-4 p-4">
           <div className="flex items-center space-x-4">
-            <Avatar className="w-16 h-16">
+            <Avatar className="w-16 h-16 bg-muted">
               <AvatarImage
                 src={policyHolderData.user.avatar}
                 alt={policyHolderData.user.name}
@@ -90,11 +64,7 @@ export default function PolicyHolderLeftPanel() {
               <h2 className="text-xl font-semibold text-gray-900">
                 {policyHolderData.user.name}
               </h2>
-              <Badge
-                className={getStatusBadgeClasses(
-                  policyHolderData.user.status.variant
-                )}
-              >
+              <Badge variant={"premium"}>
                 {policyHolderData.user.status.label}
               </Badge>
             </div>
@@ -102,46 +72,22 @@ export default function PolicyHolderLeftPanel() {
 
           {/* Action Icons */}
           <div className="flex justify-between items-center">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
-            >
+            <Button variant="ghost" size="icon">
               <Phone className="w-5 h-5" />
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
-            >
+            <Button variant="ghost" size="icon">
               <MessageCircle className="w-5 h-5" />
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
-            >
+            <Button variant="ghost" size="icon">
               <Mail className="w-5 h-5" />
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
-            >
+            <Button variant="ghost" size="icon">
               <Check className="w-5 h-5" />
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
-            >
+            <Button variant="ghost" size="icon">
               <Share2 className="w-5 h-5" />
             </Button>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="text-teal-600 hover:text-teal-700 hover:bg-teal-50"
-            >
+            <Button variant="ghost" size="icon">
               <Menu className="w-5 h-5" />
             </Button>
           </div>
@@ -151,30 +97,40 @@ export default function PolicyHolderLeftPanel() {
 
         {/* Scrollable Content Section */}
         <div className="flex flex-col gap-4 scrollbar-fade flex-1 min-h-0 my-2 pl-4 pr-2">
-          <div className="flex flex-row w-full gap-2 justify-between">
+          <div className="flex flex-row w-full gap-2 flex-nowrap items-stretch">
             {policyHolderData.statusBadges.map((badge, index) => (
               <Badge
+                onClick={() => {
+                  console.log("clicked");
+                }}
+                variant={badge.variant as any}
                 key={index}
-                className={`${getStatusBadgeClasses(badge.variant)} ${badge.value ? "flex-col p-2" : ""} flex-1/3`}
+                className="flex-1 flex items-center justify-center gap-1 px-1 sm:px-2 py-2 rounded-lg h-auto min-h-[60px] text-center cursor-pointer"
               >
-                <span className="text-xs flex flex-row items-center">
-                  {badge.hasCheck && <Check className="w-3 h-3 mr-1" />}
-                  {badge.hasDot && (
-                    <span className="w-2 h-2 bg-red-500 rounded-full mr-1"></span>
-                  )}
-                  {badge.title}
-                </span>
-                {badge.value && <span className="text-xs">{badge.value}</span>}
+                <div className="flex items-center gap-1 flex-col w-full">
+                  <span className="text-[clamp(0.625rem,1.5vw,0.75rem)] sm:text-xs font-medium break-words text-center leading-tight w-full">
+                    {badge.title}
+                  </span>
+                  <div className="flex items-center gap-1 justify-center w-full">
+                    {renderIcon(badge.iconName)}
+                    {badge.value && (
+                      <span className="text-[clamp(0.5rem,1.2vw,0.625rem)] sm:text-xs font-medium break-words text-center leading-tight">
+                        {badge.value}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <ChevronRight className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-gray-600 flex-shrink-0" />
               </Badge>
             ))}
           </div>
 
           {/* Intern beheer Section */}
           <div className="space-y-2">
-            <h3 className="font-semibold text-gray-900">
+            <h3 className="font-semibold text-gray-900 text-sm">
               {policyHolderData.internBeheer.title}
             </h3>
-            <div className="space-y-2 text-xs">
+            <div className="space-y-2 text-[clamp(0.625rem,1.5vw,0.75rem)]">
               {policyHolderData.internBeheer.fields.map((field, index) => (
                 <div key={index} className="flex justify-between">
                   <span className="text-gray-600">{field.label}</span>
@@ -188,10 +144,10 @@ export default function PolicyHolderLeftPanel() {
 
           {/* Klantgegevens Section */}
           <div className="space-y-2">
-            <h3 className="font-semibold text-gray-900">
+            <h3 className="font-semibold text-gray-900 text-sm">
               {policyHolderData.klantgegevens.title}
             </h3>
-            <div className="space-y-2 text-xs">
+            <div className="space-y-2 text-[clamp(0.625rem,1.5vw,0.75rem)]">
               {policyHolderData.klantgegevens.fields.map((field, index) => (
                 <div key={index} className="flex justify-between">
                   <span className="text-gray-600">{field.label}</span>
@@ -207,7 +163,7 @@ export default function PolicyHolderLeftPanel() {
 
           {/* Tags Section */}
           <div className="space-y-3">
-            <h3 className="font-semibold text-gray-900">
+            <h3 className="font-semibold text-gray-900 text-sm">
               {policyHolderData.tags.title}
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -215,24 +171,24 @@ export default function PolicyHolderLeftPanel() {
                 <Badge
                   key={index}
                   variant="outline"
-                  className={getTagClasses(tag.variant)}
+                  className={`${getTagClasses(tag.variant)} text-[clamp(0.625rem,1.5vw,0.75rem)]`}
                 >
                   {tag.label}
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="w-4 h-4 ml-1 p-0 hover:bg-transparent"
+                    className="w-3 h-3 sm:w-4 sm:h-4 ml-1 p-0 hover:bg-transparent"
                   >
-                    <X className="w-3 h-3" />
+                    <X className="w-2 h-2 sm:w-3 sm:h-3" />
                   </Button>
                 </Badge>
               ))}
               <Button
                 variant="outline"
                 size="icon"
-                className="w-6 h-6 rounded-full border-dashed border-gray-300 text-gray-400 hover:text-gray-600 hover:border-gray-400"
+                className="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-dashed border-gray-300 text-gray-400 hover:text-gray-600 hover:border-gray-400"
               >
-                <Plus className="w-3 h-3" />
+                <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
               </Button>
             </div>
           </div>

@@ -1,5 +1,4 @@
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Badge, Button } from "@/components/ui";
 import {
   Card,
   CardContent,
@@ -206,7 +205,7 @@ export function NavigationHistoryView(): React.JSX.Element {
       </CardHeader>
 
       <CardContent className="flex-1 p-0">
-        <ScrollArea className="h-full px-4 pb-4">
+        <ScrollArea className="h-full px-4 pb-4 scrollbar-fade">
           {history.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-8 text-center text-muted-foreground">
               <Clock className="h-8 w-8 mb-2 opacity-50" />
@@ -233,18 +232,10 @@ export function NavigationHistoryView(): React.JSX.Element {
                           <ExternalLink className="h-3 w-3 text-muted-foreground" />
                         )}
                       </div>
-                      <div className="flex-1 min-w-0 overflow-hidden w-full max-w-0">
-                        <div className="text-xs font-medium truncate max-w-full">
+                      <div className="flex-1 min-w-0 overflow-hidden">
+                        <div className="text-xs font-medium break-words leading-tight">
                           {getRouteTitle(entry.path)}
                         </div>
-                        <div className="text-xs text-muted-foreground truncate max-w-full">
-                          {entry.path}
-                        </div>
-                        {entry.search && (
-                          <div className="text-xs text-muted-foreground/70 truncate max-w-full">
-                            ?{new URLSearchParams(entry.search).toString()}
-                          </div>
-                        )}
                       </div>
                     </div>
                     <div className="flex items-center gap-2 flex-shrink-0 ml-2">

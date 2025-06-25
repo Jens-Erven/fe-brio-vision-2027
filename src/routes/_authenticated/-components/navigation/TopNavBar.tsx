@@ -153,9 +153,9 @@ export const TopNavBar: React.FC = () => {
 
       <form
         onSubmit={handleSearchSubmit}
-        className="relative flex items-center max-w-lg w-full sm:w-[500px]"
+        className="relative flex items-center max-w-lg w-full sm:w-[500px] border border-border rounded-lg"
       >
-        <Search className="absolute left-2 h-4 w-4 text-gray-500" />
+        <Search className="absolute left-2 h-4 w-4 text-primary" />
         <Input
           className="pl-8 pr-8"
           aria-label="Zoek"

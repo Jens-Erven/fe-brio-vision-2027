@@ -1,15 +1,16 @@
 import {
   ArrowRightLeft,
-  ChevronLeft,
   FileScan,
   HardDrive,
   History,
   MessageCircle,
+  Pin,
   SparklesIcon,
   SquareCheck,
 } from "lucide-react";
 import * as React from "react";
 
+import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Sidebar,
   SidebarContent,
@@ -151,22 +152,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <Sidebar collapsible="none" className="hidden flex-1 md:flex">
         <SidebarHeader className=" border-b h-14">
           <div className="flex w-full items-center justify-between">
-            <div className="text-foreground text-base font-medium">
+            <div className="text-sidebar-foreground text-base font-medium">
               {activeItem?.title}
             </div>
             <Button
-              variant="outline"
+              className="bg-muted text-primary hover:bg-accent "
               size="icon"
               onClick={() => setOpen(false)}
             >
-              <ChevronLeft />
+              <Pin className="rotate-45" />
             </Button>
           </div>
         </SidebarHeader>
         <SidebarContent>
-          <SidebarGroup className="px-2">
+          <SidebarGroup>
             <SidebarGroupContent>
-              {activeItem?.component && <activeItem.component />}
+              <ScrollArea className="h-full pb-4 scrollbar-fade">
+                {activeItem?.component && <activeItem.component />}
+              </ScrollArea>
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>

@@ -11,23 +11,21 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as LoginRouteImport } from './routes/login'
-import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedBriowebviewRouteImport } from './routes/_authenticated/briowebview'
-import { Route as AuthenticatedRiskObjectRouteImport } from './routes/_authenticated/_risk-object'
-import { Route as AuthenticatedPartyRouteImport } from './routes/_authenticated/_party'
-import { Route as AuthenticatedRiskObjectVehicleIndexRouteImport } from './routes/_authenticated/_risk-object/vehicle/index'
-import { Route as AuthenticatedPartyPolicyHolderIndexRouteImport } from './routes/_authenticated/_party/policy-holder/index'
+import { Route as AuthenticatedRiskObjectRouteRouteImport } from './routes/_authenticated/_risk-object/route'
+import { Route as AuthenticatedPartyRouteRouteImport } from './routes/_authenticated/_party/route'
 import { Route as AuthenticatedRiskObjectVehicleVehicleIdRouteImport } from './routes/_authenticated/_risk-object/vehicle/$vehicleId'
 import { Route as AuthenticatedPartyPolicyHolderPolicyHolderIdRouteImport } from './routes/_authenticated/_party/policy-holder/$policyHolderId'
 import { Route as AuthenticatedRiskObjectVehicleVehicleIdPartiesRouteImport } from './routes/_authenticated/_risk-object/vehicle/$vehicleId/parties'
 import { Route as AuthenticatedRiskObjectVehicleVehicleIdGeneralRouteImport } from './routes/_authenticated/_risk-object/vehicle/$vehicleId/general'
 import { Route as AuthenticatedRiskObjectVehicleVehicleIdDrivingAidRouteImport } from './routes/_authenticated/_risk-object/vehicle/$vehicleId/driving-aid'
-import { Route as AuthenticatedRiskObjectVehicleVehicleIdAccesoriesRouteImport } from './routes/_authenticated/_risk-object/vehicle/$vehicleId/accesories'
+import { Route as AuthenticatedRiskObjectVehicleVehicleIdAccessoriesRouteImport } from './routes/_authenticated/_risk-object/vehicle/$vehicleId/accessories'
 import { Route as AuthenticatedPartyPolicyHolderPolicyHolderIdRelationsRouteImport } from './routes/_authenticated/_party/policy-holder/$policyHolderId/relations'
 import { Route as AuthenticatedPartyPolicyHolderPolicyHolderIdIoRouteImport } from './routes/_authenticated/_party/policy-holder/$policyHolderId/io'
 import { Route as AuthenticatedPartyPolicyHolderPolicyHolderIdDataRouteImport } from './routes/_authenticated/_party/policy-holder/$policyHolderId/data'
-import { Route as AuthenticatedPartyPolicyHolderPolicyHolderIdFileIndexRouteImport } from './routes/_authenticated/_party/policy-holder/$policyHolderId/file/index'
+import { Route as AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRouteImport } from './routes/_authenticated/_party/policy-holder/$policyHolderId/file/route'
 import { Route as AuthenticatedPartyPolicyHolderPolicyHolderIdFileRiskObjectsRouteImport } from './routes/_authenticated/_party/policy-holder/$policyHolderId/file/risk-objects'
 import { Route as AuthenticatedPartyPolicyHolderPolicyHolderIdFileContractsRouteImport } from './routes/_authenticated/_party/policy-holder/$policyHolderId/file/contracts'
 import { Route as AuthenticatedPartyPolicyHolderPolicyHolderIdFileClaimsRouteImport } from './routes/_authenticated/_party/policy-holder/$policyHolderId/file/claims'
@@ -42,7 +40,7 @@ const LoginRoute = LoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedRoute = AuthenticatedRouteImport.update({
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
@@ -55,39 +53,28 @@ const AuthenticatedBriowebviewRoute =
   AuthenticatedBriowebviewRouteImport.update({
     id: '/briowebview',
     path: '/briowebview',
-    getParentRoute: () => AuthenticatedRoute,
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedRiskObjectRoute = AuthenticatedRiskObjectRouteImport.update({
-  id: '/_risk-object',
-  getParentRoute: () => AuthenticatedRoute,
-} as any)
-const AuthenticatedPartyRoute = AuthenticatedPartyRouteImport.update({
+const AuthenticatedRiskObjectRouteRoute =
+  AuthenticatedRiskObjectRouteRouteImport.update({
+    id: '/_risk-object',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedPartyRouteRoute = AuthenticatedPartyRouteRouteImport.update({
   id: '/_party',
-  getParentRoute: () => AuthenticatedRoute,
+  getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedRiskObjectVehicleIndexRoute =
-  AuthenticatedRiskObjectVehicleIndexRouteImport.update({
-    id: '/vehicle/',
-    path: '/vehicle/',
-    getParentRoute: () => AuthenticatedRiskObjectRoute,
-  } as any)
-const AuthenticatedPartyPolicyHolderIndexRoute =
-  AuthenticatedPartyPolicyHolderIndexRouteImport.update({
-    id: '/policy-holder/',
-    path: '/policy-holder/',
-    getParentRoute: () => AuthenticatedPartyRoute,
-  } as any)
 const AuthenticatedRiskObjectVehicleVehicleIdRoute =
   AuthenticatedRiskObjectVehicleVehicleIdRouteImport.update({
     id: '/vehicle/$vehicleId',
     path: '/vehicle/$vehicleId',
-    getParentRoute: () => AuthenticatedRiskObjectRoute,
+    getParentRoute: () => AuthenticatedRiskObjectRouteRoute,
   } as any)
 const AuthenticatedPartyPolicyHolderPolicyHolderIdRoute =
   AuthenticatedPartyPolicyHolderPolicyHolderIdRouteImport.update({
     id: '/policy-holder/$policyHolderId',
     path: '/policy-holder/$policyHolderId',
-    getParentRoute: () => AuthenticatedPartyRoute,
+    getParentRoute: () => AuthenticatedPartyRouteRoute,
   } as any)
 const AuthenticatedRiskObjectVehicleVehicleIdPartiesRoute =
   AuthenticatedRiskObjectVehicleVehicleIdPartiesRouteImport.update({
@@ -107,10 +94,10 @@ const AuthenticatedRiskObjectVehicleVehicleIdDrivingAidRoute =
     path: '/driving-aid',
     getParentRoute: () => AuthenticatedRiskObjectVehicleVehicleIdRoute,
   } as any)
-const AuthenticatedRiskObjectVehicleVehicleIdAccesoriesRoute =
-  AuthenticatedRiskObjectVehicleVehicleIdAccesoriesRouteImport.update({
-    id: '/accesories',
-    path: '/accesories',
+const AuthenticatedRiskObjectVehicleVehicleIdAccessoriesRoute =
+  AuthenticatedRiskObjectVehicleVehicleIdAccessoriesRouteImport.update({
+    id: '/accessories',
+    path: '/accessories',
     getParentRoute: () => AuthenticatedRiskObjectVehicleVehicleIdRoute,
   } as any)
 const AuthenticatedPartyPolicyHolderPolicyHolderIdRelationsRoute =
@@ -131,31 +118,34 @@ const AuthenticatedPartyPolicyHolderPolicyHolderIdDataRoute =
     path: '/data',
     getParentRoute: () => AuthenticatedPartyPolicyHolderPolicyHolderIdRoute,
   } as any)
-const AuthenticatedPartyPolicyHolderPolicyHolderIdFileIndexRoute =
-  AuthenticatedPartyPolicyHolderPolicyHolderIdFileIndexRouteImport.update({
-    id: '/file/',
-    path: '/file/',
+const AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRoute =
+  AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRouteImport.update({
+    id: '/file',
+    path: '/file',
     getParentRoute: () => AuthenticatedPartyPolicyHolderPolicyHolderIdRoute,
   } as any)
 const AuthenticatedPartyPolicyHolderPolicyHolderIdFileRiskObjectsRoute =
   AuthenticatedPartyPolicyHolderPolicyHolderIdFileRiskObjectsRouteImport.update(
     {
-      id: '/file/risk-objects',
-      path: '/file/risk-objects',
-      getParentRoute: () => AuthenticatedPartyPolicyHolderPolicyHolderIdRoute,
+      id: '/risk-objects',
+      path: '/risk-objects',
+      getParentRoute: () =>
+        AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRoute,
     } as any,
   )
 const AuthenticatedPartyPolicyHolderPolicyHolderIdFileContractsRoute =
   AuthenticatedPartyPolicyHolderPolicyHolderIdFileContractsRouteImport.update({
-    id: '/file/contracts',
-    path: '/file/contracts',
-    getParentRoute: () => AuthenticatedPartyPolicyHolderPolicyHolderIdRoute,
+    id: '/contracts',
+    path: '/contracts',
+    getParentRoute: () =>
+      AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRoute,
   } as any)
 const AuthenticatedPartyPolicyHolderPolicyHolderIdFileClaimsRoute =
   AuthenticatedPartyPolicyHolderPolicyHolderIdFileClaimsRouteImport.update({
-    id: '/file/claims',
-    path: '/file/claims',
-    getParentRoute: () => AuthenticatedPartyPolicyHolderPolicyHolderIdRoute,
+    id: '/claims',
+    path: '/claims',
+    getParentRoute: () =>
+      AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -165,19 +155,17 @@ export interface FileRoutesByFullPath {
   '/briowebview': typeof AuthenticatedBriowebviewRoute
   '/policy-holder/$policyHolderId': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRouteWithChildren
   '/vehicle/$vehicleId': typeof AuthenticatedRiskObjectVehicleVehicleIdRouteWithChildren
-  '/policy-holder': typeof AuthenticatedPartyPolicyHolderIndexRoute
-  '/vehicle': typeof AuthenticatedRiskObjectVehicleIndexRoute
+  '/policy-holder/$policyHolderId/file': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRouteWithChildren
   '/policy-holder/$policyHolderId/data': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdDataRoute
   '/policy-holder/$policyHolderId/io': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdIoRoute
   '/policy-holder/$policyHolderId/relations': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRelationsRoute
-  '/vehicle/$vehicleId/accesories': typeof AuthenticatedRiskObjectVehicleVehicleIdAccesoriesRoute
+  '/vehicle/$vehicleId/accessories': typeof AuthenticatedRiskObjectVehicleVehicleIdAccessoriesRoute
   '/vehicle/$vehicleId/driving-aid': typeof AuthenticatedRiskObjectVehicleVehicleIdDrivingAidRoute
   '/vehicle/$vehicleId/general': typeof AuthenticatedRiskObjectVehicleVehicleIdGeneralRoute
   '/vehicle/$vehicleId/parties': typeof AuthenticatedRiskObjectVehicleVehicleIdPartiesRoute
   '/policy-holder/$policyHolderId/file/claims': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileClaimsRoute
   '/policy-holder/$policyHolderId/file/contracts': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileContractsRoute
   '/policy-holder/$policyHolderId/file/risk-objects': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileRiskObjectsRoute
-  '/policy-holder/$policyHolderId/file': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -186,44 +174,40 @@ export interface FileRoutesByTo {
   '/briowebview': typeof AuthenticatedBriowebviewRoute
   '/policy-holder/$policyHolderId': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRouteWithChildren
   '/vehicle/$vehicleId': typeof AuthenticatedRiskObjectVehicleVehicleIdRouteWithChildren
-  '/policy-holder': typeof AuthenticatedPartyPolicyHolderIndexRoute
-  '/vehicle': typeof AuthenticatedRiskObjectVehicleIndexRoute
+  '/policy-holder/$policyHolderId/file': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRouteWithChildren
   '/policy-holder/$policyHolderId/data': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdDataRoute
   '/policy-holder/$policyHolderId/io': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdIoRoute
   '/policy-holder/$policyHolderId/relations': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRelationsRoute
-  '/vehicle/$vehicleId/accesories': typeof AuthenticatedRiskObjectVehicleVehicleIdAccesoriesRoute
+  '/vehicle/$vehicleId/accessories': typeof AuthenticatedRiskObjectVehicleVehicleIdAccessoriesRoute
   '/vehicle/$vehicleId/driving-aid': typeof AuthenticatedRiskObjectVehicleVehicleIdDrivingAidRoute
   '/vehicle/$vehicleId/general': typeof AuthenticatedRiskObjectVehicleVehicleIdGeneralRoute
   '/vehicle/$vehicleId/parties': typeof AuthenticatedRiskObjectVehicleVehicleIdPartiesRoute
   '/policy-holder/$policyHolderId/file/claims': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileClaimsRoute
   '/policy-holder/$policyHolderId/file/contracts': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileContractsRoute
   '/policy-holder/$policyHolderId/file/risk-objects': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileRiskObjectsRoute
-  '/policy-holder/$policyHolderId/file': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/login': typeof LoginRoute
   '/register': typeof RegisterRoute
-  '/_authenticated/_party': typeof AuthenticatedPartyRouteWithChildren
-  '/_authenticated/_risk-object': typeof AuthenticatedRiskObjectRouteWithChildren
+  '/_authenticated/_party': typeof AuthenticatedPartyRouteRouteWithChildren
+  '/_authenticated/_risk-object': typeof AuthenticatedRiskObjectRouteRouteWithChildren
   '/_authenticated/briowebview': typeof AuthenticatedBriowebviewRoute
   '/_authenticated/_party/policy-holder/$policyHolderId': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRouteWithChildren
   '/_authenticated/_risk-object/vehicle/$vehicleId': typeof AuthenticatedRiskObjectVehicleVehicleIdRouteWithChildren
-  '/_authenticated/_party/policy-holder/': typeof AuthenticatedPartyPolicyHolderIndexRoute
-  '/_authenticated/_risk-object/vehicle/': typeof AuthenticatedRiskObjectVehicleIndexRoute
+  '/_authenticated/_party/policy-holder/$policyHolderId/file': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRouteWithChildren
   '/_authenticated/_party/policy-holder/$policyHolderId/data': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdDataRoute
   '/_authenticated/_party/policy-holder/$policyHolderId/io': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdIoRoute
   '/_authenticated/_party/policy-holder/$policyHolderId/relations': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRelationsRoute
-  '/_authenticated/_risk-object/vehicle/$vehicleId/accesories': typeof AuthenticatedRiskObjectVehicleVehicleIdAccesoriesRoute
+  '/_authenticated/_risk-object/vehicle/$vehicleId/accessories': typeof AuthenticatedRiskObjectVehicleVehicleIdAccessoriesRoute
   '/_authenticated/_risk-object/vehicle/$vehicleId/driving-aid': typeof AuthenticatedRiskObjectVehicleVehicleIdDrivingAidRoute
   '/_authenticated/_risk-object/vehicle/$vehicleId/general': typeof AuthenticatedRiskObjectVehicleVehicleIdGeneralRoute
   '/_authenticated/_risk-object/vehicle/$vehicleId/parties': typeof AuthenticatedRiskObjectVehicleVehicleIdPartiesRoute
   '/_authenticated/_party/policy-holder/$policyHolderId/file/claims': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileClaimsRoute
   '/_authenticated/_party/policy-holder/$policyHolderId/file/contracts': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileContractsRoute
   '/_authenticated/_party/policy-holder/$policyHolderId/file/risk-objects': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileRiskObjectsRoute
-  '/_authenticated/_party/policy-holder/$policyHolderId/file/': typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -234,19 +218,17 @@ export interface FileRouteTypes {
     | '/briowebview'
     | '/policy-holder/$policyHolderId'
     | '/vehicle/$vehicleId'
-    | '/policy-holder'
-    | '/vehicle'
+    | '/policy-holder/$policyHolderId/file'
     | '/policy-holder/$policyHolderId/data'
     | '/policy-holder/$policyHolderId/io'
     | '/policy-holder/$policyHolderId/relations'
-    | '/vehicle/$vehicleId/accesories'
+    | '/vehicle/$vehicleId/accessories'
     | '/vehicle/$vehicleId/driving-aid'
     | '/vehicle/$vehicleId/general'
     | '/vehicle/$vehicleId/parties'
     | '/policy-holder/$policyHolderId/file/claims'
     | '/policy-holder/$policyHolderId/file/contracts'
     | '/policy-holder/$policyHolderId/file/risk-objects'
-    | '/policy-holder/$policyHolderId/file'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -255,19 +237,17 @@ export interface FileRouteTypes {
     | '/briowebview'
     | '/policy-holder/$policyHolderId'
     | '/vehicle/$vehicleId'
-    | '/policy-holder'
-    | '/vehicle'
+    | '/policy-holder/$policyHolderId/file'
     | '/policy-holder/$policyHolderId/data'
     | '/policy-holder/$policyHolderId/io'
     | '/policy-holder/$policyHolderId/relations'
-    | '/vehicle/$vehicleId/accesories'
+    | '/vehicle/$vehicleId/accessories'
     | '/vehicle/$vehicleId/driving-aid'
     | '/vehicle/$vehicleId/general'
     | '/vehicle/$vehicleId/parties'
     | '/policy-holder/$policyHolderId/file/claims'
     | '/policy-holder/$policyHolderId/file/contracts'
     | '/policy-holder/$policyHolderId/file/risk-objects'
-    | '/policy-holder/$policyHolderId/file'
   id:
     | '__root__'
     | '/'
@@ -279,24 +259,22 @@ export interface FileRouteTypes {
     | '/_authenticated/briowebview'
     | '/_authenticated/_party/policy-holder/$policyHolderId'
     | '/_authenticated/_risk-object/vehicle/$vehicleId'
-    | '/_authenticated/_party/policy-holder/'
-    | '/_authenticated/_risk-object/vehicle/'
+    | '/_authenticated/_party/policy-holder/$policyHolderId/file'
     | '/_authenticated/_party/policy-holder/$policyHolderId/data'
     | '/_authenticated/_party/policy-holder/$policyHolderId/io'
     | '/_authenticated/_party/policy-holder/$policyHolderId/relations'
-    | '/_authenticated/_risk-object/vehicle/$vehicleId/accesories'
+    | '/_authenticated/_risk-object/vehicle/$vehicleId/accessories'
     | '/_authenticated/_risk-object/vehicle/$vehicleId/driving-aid'
     | '/_authenticated/_risk-object/vehicle/$vehicleId/general'
     | '/_authenticated/_risk-object/vehicle/$vehicleId/parties'
     | '/_authenticated/_party/policy-holder/$policyHolderId/file/claims'
     | '/_authenticated/_party/policy-holder/$policyHolderId/file/contracts'
     | '/_authenticated/_party/policy-holder/$policyHolderId/file/risk-objects'
-    | '/_authenticated/_party/policy-holder/$policyHolderId/file/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   LoginRoute: typeof LoginRoute
   RegisterRoute: typeof RegisterRoute
 }
@@ -321,7 +299,7 @@ declare module '@tanstack/react-router' {
       id: '/_authenticated'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof AuthenticatedRouteImport
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -336,49 +314,35 @@ declare module '@tanstack/react-router' {
       path: '/briowebview'
       fullPath: '/briowebview'
       preLoaderRoute: typeof AuthenticatedBriowebviewRouteImport
-      parentRoute: typeof AuthenticatedRoute
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/_risk-object': {
       id: '/_authenticated/_risk-object'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof AuthenticatedRiskObjectRouteImport
-      parentRoute: typeof AuthenticatedRoute
+      preLoaderRoute: typeof AuthenticatedRiskObjectRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/_party': {
       id: '/_authenticated/_party'
       path: ''
       fullPath: ''
-      preLoaderRoute: typeof AuthenticatedPartyRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
-    '/_authenticated/_risk-object/vehicle/': {
-      id: '/_authenticated/_risk-object/vehicle/'
-      path: '/vehicle'
-      fullPath: '/vehicle'
-      preLoaderRoute: typeof AuthenticatedRiskObjectVehicleIndexRouteImport
-      parentRoute: typeof AuthenticatedRiskObjectRoute
-    }
-    '/_authenticated/_party/policy-holder/': {
-      id: '/_authenticated/_party/policy-holder/'
-      path: '/policy-holder'
-      fullPath: '/policy-holder'
-      preLoaderRoute: typeof AuthenticatedPartyPolicyHolderIndexRouteImport
-      parentRoute: typeof AuthenticatedPartyRoute
+      preLoaderRoute: typeof AuthenticatedPartyRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/_risk-object/vehicle/$vehicleId': {
       id: '/_authenticated/_risk-object/vehicle/$vehicleId'
       path: '/vehicle/$vehicleId'
       fullPath: '/vehicle/$vehicleId'
       preLoaderRoute: typeof AuthenticatedRiskObjectVehicleVehicleIdRouteImport
-      parentRoute: typeof AuthenticatedRiskObjectRoute
+      parentRoute: typeof AuthenticatedRiskObjectRouteRoute
     }
     '/_authenticated/_party/policy-holder/$policyHolderId': {
       id: '/_authenticated/_party/policy-holder/$policyHolderId'
       path: '/policy-holder/$policyHolderId'
       fullPath: '/policy-holder/$policyHolderId'
       preLoaderRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRouteImport
-      parentRoute: typeof AuthenticatedPartyRoute
+      parentRoute: typeof AuthenticatedPartyRouteRoute
     }
     '/_authenticated/_risk-object/vehicle/$vehicleId/parties': {
       id: '/_authenticated/_risk-object/vehicle/$vehicleId/parties'
@@ -401,11 +365,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedRiskObjectVehicleVehicleIdDrivingAidRouteImport
       parentRoute: typeof AuthenticatedRiskObjectVehicleVehicleIdRoute
     }
-    '/_authenticated/_risk-object/vehicle/$vehicleId/accesories': {
-      id: '/_authenticated/_risk-object/vehicle/$vehicleId/accesories'
-      path: '/accesories'
-      fullPath: '/vehicle/$vehicleId/accesories'
-      preLoaderRoute: typeof AuthenticatedRiskObjectVehicleVehicleIdAccesoriesRouteImport
+    '/_authenticated/_risk-object/vehicle/$vehicleId/accessories': {
+      id: '/_authenticated/_risk-object/vehicle/$vehicleId/accessories'
+      path: '/accessories'
+      fullPath: '/vehicle/$vehicleId/accessories'
+      preLoaderRoute: typeof AuthenticatedRiskObjectVehicleVehicleIdAccessoriesRouteImport
       parentRoute: typeof AuthenticatedRiskObjectVehicleVehicleIdRoute
     }
     '/_authenticated/_party/policy-holder/$policyHolderId/relations': {
@@ -429,63 +393,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdDataRouteImport
       parentRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRoute
     }
-    '/_authenticated/_party/policy-holder/$policyHolderId/file/': {
-      id: '/_authenticated/_party/policy-holder/$policyHolderId/file/'
+    '/_authenticated/_party/policy-holder/$policyHolderId/file': {
+      id: '/_authenticated/_party/policy-holder/$policyHolderId/file'
       path: '/file'
       fullPath: '/policy-holder/$policyHolderId/file'
-      preLoaderRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileIndexRouteImport
+      preLoaderRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRouteImport
       parentRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRoute
     }
     '/_authenticated/_party/policy-holder/$policyHolderId/file/risk-objects': {
       id: '/_authenticated/_party/policy-holder/$policyHolderId/file/risk-objects'
-      path: '/file/risk-objects'
+      path: '/risk-objects'
       fullPath: '/policy-holder/$policyHolderId/file/risk-objects'
       preLoaderRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileRiskObjectsRouteImport
-      parentRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRoute
+      parentRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRoute
     }
     '/_authenticated/_party/policy-holder/$policyHolderId/file/contracts': {
       id: '/_authenticated/_party/policy-holder/$policyHolderId/file/contracts'
-      path: '/file/contracts'
+      path: '/contracts'
       fullPath: '/policy-holder/$policyHolderId/file/contracts'
       preLoaderRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileContractsRouteImport
-      parentRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRoute
+      parentRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRoute
     }
     '/_authenticated/_party/policy-holder/$policyHolderId/file/claims': {
       id: '/_authenticated/_party/policy-holder/$policyHolderId/file/claims'
-      path: '/file/claims'
+      path: '/claims'
       fullPath: '/policy-holder/$policyHolderId/file/claims'
       preLoaderRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileClaimsRouteImport
-      parentRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRoute
+      parentRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRoute
     }
   }
 }
 
-interface AuthenticatedPartyPolicyHolderPolicyHolderIdRouteChildren {
-  AuthenticatedPartyPolicyHolderPolicyHolderIdDataRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdDataRoute
-  AuthenticatedPartyPolicyHolderPolicyHolderIdIoRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdIoRoute
-  AuthenticatedPartyPolicyHolderPolicyHolderIdRelationsRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRelationsRoute
+interface AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRouteChildren {
   AuthenticatedPartyPolicyHolderPolicyHolderIdFileClaimsRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileClaimsRoute
   AuthenticatedPartyPolicyHolderPolicyHolderIdFileContractsRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileContractsRoute
   AuthenticatedPartyPolicyHolderPolicyHolderIdFileRiskObjectsRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileRiskObjectsRoute
-  AuthenticatedPartyPolicyHolderPolicyHolderIdFileIndexRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileIndexRoute
 }
 
-const AuthenticatedPartyPolicyHolderPolicyHolderIdRouteChildren: AuthenticatedPartyPolicyHolderPolicyHolderIdRouteChildren =
+const AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRouteChildren: AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRouteChildren =
   {
-    AuthenticatedPartyPolicyHolderPolicyHolderIdDataRoute:
-      AuthenticatedPartyPolicyHolderPolicyHolderIdDataRoute,
-    AuthenticatedPartyPolicyHolderPolicyHolderIdIoRoute:
-      AuthenticatedPartyPolicyHolderPolicyHolderIdIoRoute,
-    AuthenticatedPartyPolicyHolderPolicyHolderIdRelationsRoute:
-      AuthenticatedPartyPolicyHolderPolicyHolderIdRelationsRoute,
     AuthenticatedPartyPolicyHolderPolicyHolderIdFileClaimsRoute:
       AuthenticatedPartyPolicyHolderPolicyHolderIdFileClaimsRoute,
     AuthenticatedPartyPolicyHolderPolicyHolderIdFileContractsRoute:
       AuthenticatedPartyPolicyHolderPolicyHolderIdFileContractsRoute,
     AuthenticatedPartyPolicyHolderPolicyHolderIdFileRiskObjectsRoute:
       AuthenticatedPartyPolicyHolderPolicyHolderIdFileRiskObjectsRoute,
-    AuthenticatedPartyPolicyHolderPolicyHolderIdFileIndexRoute:
-      AuthenticatedPartyPolicyHolderPolicyHolderIdFileIndexRoute,
+  }
+
+const AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRouteWithChildren =
+  AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRoute._addFileChildren(
+    AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRouteChildren,
+  )
+
+interface AuthenticatedPartyPolicyHolderPolicyHolderIdRouteChildren {
+  AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRouteWithChildren
+  AuthenticatedPartyPolicyHolderPolicyHolderIdDataRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdDataRoute
+  AuthenticatedPartyPolicyHolderPolicyHolderIdIoRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdIoRoute
+  AuthenticatedPartyPolicyHolderPolicyHolderIdRelationsRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRelationsRoute
+}
+
+const AuthenticatedPartyPolicyHolderPolicyHolderIdRouteChildren: AuthenticatedPartyPolicyHolderPolicyHolderIdRouteChildren =
+  {
+    AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRoute:
+      AuthenticatedPartyPolicyHolderPolicyHolderIdFileRouteRouteWithChildren,
+    AuthenticatedPartyPolicyHolderPolicyHolderIdDataRoute:
+      AuthenticatedPartyPolicyHolderPolicyHolderIdDataRoute,
+    AuthenticatedPartyPolicyHolderPolicyHolderIdIoRoute:
+      AuthenticatedPartyPolicyHolderPolicyHolderIdIoRoute,
+    AuthenticatedPartyPolicyHolderPolicyHolderIdRelationsRoute:
+      AuthenticatedPartyPolicyHolderPolicyHolderIdRelationsRoute,
   }
 
 const AuthenticatedPartyPolicyHolderPolicyHolderIdRouteWithChildren =
@@ -493,23 +469,23 @@ const AuthenticatedPartyPolicyHolderPolicyHolderIdRouteWithChildren =
     AuthenticatedPartyPolicyHolderPolicyHolderIdRouteChildren,
   )
 
-interface AuthenticatedPartyRouteChildren {
+interface AuthenticatedPartyRouteRouteChildren {
   AuthenticatedPartyPolicyHolderPolicyHolderIdRoute: typeof AuthenticatedPartyPolicyHolderPolicyHolderIdRouteWithChildren
-  AuthenticatedPartyPolicyHolderIndexRoute: typeof AuthenticatedPartyPolicyHolderIndexRoute
 }
 
-const AuthenticatedPartyRouteChildren: AuthenticatedPartyRouteChildren = {
-  AuthenticatedPartyPolicyHolderPolicyHolderIdRoute:
-    AuthenticatedPartyPolicyHolderPolicyHolderIdRouteWithChildren,
-  AuthenticatedPartyPolicyHolderIndexRoute:
-    AuthenticatedPartyPolicyHolderIndexRoute,
-}
+const AuthenticatedPartyRouteRouteChildren: AuthenticatedPartyRouteRouteChildren =
+  {
+    AuthenticatedPartyPolicyHolderPolicyHolderIdRoute:
+      AuthenticatedPartyPolicyHolderPolicyHolderIdRouteWithChildren,
+  }
 
-const AuthenticatedPartyRouteWithChildren =
-  AuthenticatedPartyRoute._addFileChildren(AuthenticatedPartyRouteChildren)
+const AuthenticatedPartyRouteRouteWithChildren =
+  AuthenticatedPartyRouteRoute._addFileChildren(
+    AuthenticatedPartyRouteRouteChildren,
+  )
 
 interface AuthenticatedRiskObjectVehicleVehicleIdRouteChildren {
-  AuthenticatedRiskObjectVehicleVehicleIdAccesoriesRoute: typeof AuthenticatedRiskObjectVehicleVehicleIdAccesoriesRoute
+  AuthenticatedRiskObjectVehicleVehicleIdAccessoriesRoute: typeof AuthenticatedRiskObjectVehicleVehicleIdAccessoriesRoute
   AuthenticatedRiskObjectVehicleVehicleIdDrivingAidRoute: typeof AuthenticatedRiskObjectVehicleVehicleIdDrivingAidRoute
   AuthenticatedRiskObjectVehicleVehicleIdGeneralRoute: typeof AuthenticatedRiskObjectVehicleVehicleIdGeneralRoute
   AuthenticatedRiskObjectVehicleVehicleIdPartiesRoute: typeof AuthenticatedRiskObjectVehicleVehicleIdPartiesRoute
@@ -517,8 +493,8 @@ interface AuthenticatedRiskObjectVehicleVehicleIdRouteChildren {
 
 const AuthenticatedRiskObjectVehicleVehicleIdRouteChildren: AuthenticatedRiskObjectVehicleVehicleIdRouteChildren =
   {
-    AuthenticatedRiskObjectVehicleVehicleIdAccesoriesRoute:
-      AuthenticatedRiskObjectVehicleVehicleIdAccesoriesRoute,
+    AuthenticatedRiskObjectVehicleVehicleIdAccessoriesRoute:
+      AuthenticatedRiskObjectVehicleVehicleIdAccessoriesRoute,
     AuthenticatedRiskObjectVehicleVehicleIdDrivingAidRoute:
       AuthenticatedRiskObjectVehicleVehicleIdDrivingAidRoute,
     AuthenticatedRiskObjectVehicleVehicleIdGeneralRoute:
@@ -532,43 +508,40 @@ const AuthenticatedRiskObjectVehicleVehicleIdRouteWithChildren =
     AuthenticatedRiskObjectVehicleVehicleIdRouteChildren,
   )
 
-interface AuthenticatedRiskObjectRouteChildren {
+interface AuthenticatedRiskObjectRouteRouteChildren {
   AuthenticatedRiskObjectVehicleVehicleIdRoute: typeof AuthenticatedRiskObjectVehicleVehicleIdRouteWithChildren
-  AuthenticatedRiskObjectVehicleIndexRoute: typeof AuthenticatedRiskObjectVehicleIndexRoute
 }
 
-const AuthenticatedRiskObjectRouteChildren: AuthenticatedRiskObjectRouteChildren =
+const AuthenticatedRiskObjectRouteRouteChildren: AuthenticatedRiskObjectRouteRouteChildren =
   {
     AuthenticatedRiskObjectVehicleVehicleIdRoute:
       AuthenticatedRiskObjectVehicleVehicleIdRouteWithChildren,
-    AuthenticatedRiskObjectVehicleIndexRoute:
-      AuthenticatedRiskObjectVehicleIndexRoute,
   }
 
-const AuthenticatedRiskObjectRouteWithChildren =
-  AuthenticatedRiskObjectRoute._addFileChildren(
-    AuthenticatedRiskObjectRouteChildren,
+const AuthenticatedRiskObjectRouteRouteWithChildren =
+  AuthenticatedRiskObjectRouteRoute._addFileChildren(
+    AuthenticatedRiskObjectRouteRouteChildren,
   )
 
-interface AuthenticatedRouteChildren {
-  AuthenticatedPartyRoute: typeof AuthenticatedPartyRouteWithChildren
-  AuthenticatedRiskObjectRoute: typeof AuthenticatedRiskObjectRouteWithChildren
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedPartyRouteRoute: typeof AuthenticatedPartyRouteRouteWithChildren
+  AuthenticatedRiskObjectRouteRoute: typeof AuthenticatedRiskObjectRouteRouteWithChildren
   AuthenticatedBriowebviewRoute: typeof AuthenticatedBriowebviewRoute
 }
 
-const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
-  AuthenticatedPartyRoute: AuthenticatedPartyRouteWithChildren,
-  AuthenticatedRiskObjectRoute: AuthenticatedRiskObjectRouteWithChildren,
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedPartyRouteRoute: AuthenticatedPartyRouteRouteWithChildren,
+  AuthenticatedRiskObjectRouteRoute:
+    AuthenticatedRiskObjectRouteRouteWithChildren,
   AuthenticatedBriowebviewRoute: AuthenticatedBriowebviewRoute,
 }
 
-const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
-  AuthenticatedRouteChildren,
-)
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   LoginRoute: LoginRoute,
   RegisterRoute: RegisterRoute,
 }

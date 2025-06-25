@@ -123,12 +123,14 @@ export function NavUser({
                     Default
                   </DropdownMenuItem>
                   <DropdownMenuItem
+                    disabled={true}
                     onClick={() => handleThemeChange("modern-minimal")}
                     className={theme === "modern-minimal" ? "bg-accent" : ""}
                   >
                     Modern Minimal
                   </DropdownMenuItem>
                   <DropdownMenuItem
+                    disabled={true}
                     onClick={() => handleThemeChange("supabase")}
                     className={theme === "supabase" ? "bg-accent" : ""}
                   >

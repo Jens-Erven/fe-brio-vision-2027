@@ -12,20 +12,20 @@
     {
       "title": "Klantenfiche",
       "value": "12/11/23",
-      "variant": "success",
-      "hasCheck": true
+      "variant": "outline",
+      "iconName": "Check"
     },
     {
       "title": "MyBroker",
       "value": "Actief",
-      "variant": "success",
-      "hasCheck": true
+      "variant": "outline",
+      "iconName": "Check"
     },
     {
       "title": "AML Hoog",
       "value": null,
-      "variant": "danger",
-      "hasDot": true
+      "variant": "destructive",
+      "iconName": "Bell"
     }
   ],
   "internBeheer": {

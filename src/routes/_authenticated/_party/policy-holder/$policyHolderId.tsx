@@ -13,13 +13,13 @@ export const Route = createFileRoute(
   component: RouteComponent,
 });
 
-interface PolicyHolderTab {
+interface Tab {
   label: string;
   path: string;
   icon: React.ReactNode;
 }
 
-const policyHolderTabs: PolicyHolderTab[] = [
+const tabs: Tab[] = [
   {
     label: "Dossier",
     path: "/policy-holder/$policyHolderId/file",
@@ -50,7 +50,7 @@ function RouteComponent() {
     <div className="flex flex-col gap-2 border border-border rounded-lg h-full w-full">
       <div className="border-b border-border flex-shrink-0">
         <nav className="flex w-full" aria-label="Policy holder tabs">
-          {policyHolderTabs.map((tab) => {
+          {tabs.map((tab) => {
             const tabPath = tab.path.replace("$policyHolderId", policyHolderId);
             const isActive = location.pathname.includes(tabPath);
             return (
@@ -59,7 +59,7 @@ function RouteComponent() {
                 to={tab.path}
                 params={{ policyHolderId }}
                 className={cn(
-                  "flex-1 border-b-2 py-2 px-4 text-sm font-medium transition-colors text-center flex items-center justify-center gap-2",
+                  "flex-1 border-b-2 py-4 px-4 text-sm font-medium transition-colors text-center flex items-center justify-center gap-2",
                   isActive
                     ? "border-primary text-primary"
                     : "border-transparent text-muted-foreground hover:text-foreground hover:border-muted-foreground"
@@ -72,7 +72,7 @@ function RouteComponent() {
           })}
         </nav>
       </div>
-      <div className="flex-1  overflow-y-auto ">
+      <div className="flex-1 overflow-y-auto p-4">
         <Outlet />
       </div>
     </div>
