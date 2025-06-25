@@ -1,4 +1,5 @@
 import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 
@@ -7,6 +8,18 @@ import { ThemeProvider } from "./contexts/theme-context";
 import reportWebVitals from "./reportWebVitals.ts";
 import { routeTree } from "./routeTree.gen.ts";
 import "./styles.css";
+
+// Create a query client instance
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 30000, // 30 seconds
+      gcTime: 300000, // 5 minutes
+      retry: 2,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 // Create a new router instance
 const router = createRouter({
@@ -28,12 +41,13 @@ declare module "@tanstack/react-router" {
 // Render the app
 const rootElement = document.getElementById("app");
 if (rootElement && !rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement);
-  root.render(
+  const root = ReactDOM.createRoot(rootElement); root.render(
     <StrictMode>
-      <ThemeProvider>
-        <RouterProvider router={router} />
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <RouterProvider router={router} />
+        </ThemeProvider>
+      </QueryClientProvider>
     </StrictMode>
   );
 }
