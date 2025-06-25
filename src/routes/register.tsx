@@ -28,11 +28,6 @@ export const Route = createFileRoute("/register")({
 function RegisterComponent() {
   const { theme, mode, setTheme, toggleMode } = useTheme();
 
-  const handleRegister = () => {
-    // Handle register logic here
-    console.log("Register clicked");
-  };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-background relative">
       {/* Theme Selector */}
@@ -110,9 +105,7 @@ function RegisterComponent() {
               placeholder="Confirm your password"
             />
           </div>
-          <Button onClick={handleRegister} className="w-full">
-            Create Account
-          </Button>
+          <Button className="w-full">Create Account</Button>
           <div className="text-center">
             <a href="/login" className="text-sm text-primary hover:underline">
               Already have an account? Sign in

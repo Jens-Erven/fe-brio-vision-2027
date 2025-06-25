@@ -1,7 +1,6 @@
 import {
   ArrowRightLeft,
   ChevronLeft,
-  Command,
   FileScan,
   HardDrive,
   History,
@@ -11,7 +10,6 @@ import {
 } from "lucide-react";
 import * as React from "react";
 
-import { NavUser } from "@/components/sidebar/NavUser";
 import {
   Sidebar,
   SidebarContent,
@@ -24,8 +22,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { Link } from "@tanstack/react-router";
-import { Button } from "../ui/button";
+import { NavUser } from "@/routes/_authenticated/-components/sidebar/NavUser";
+import { Button } from "../../../../components/ui/button";
 import { AssistantView } from "./views/assistant/AssistantView";
 import { CustomerMessagesView } from "./views/customer-messages/CustomerMessagesView";
 import { DataProcessingView } from "./views/data-processing/DataProcessingView";
@@ -113,19 +111,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         collapsible="none"
         className="w-[calc(var(--sidebar-width-icon)+1px)]! border-r"
       >
-        <SidebarHeader>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton size="lg" asChild className="md:h-8 md:p-0">
-                <Link to="/">
-                  <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                    <Command className="size-4" />
-                  </div>
-                </Link>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarHeader>
         <SidebarContent>
           <SidebarGroup>
             <SidebarGroupContent className="px-1.5 md:px-0">
