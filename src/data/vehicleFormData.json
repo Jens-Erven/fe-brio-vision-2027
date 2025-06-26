@@ -1,0 +1,567 @@
+{
+  "vehicleId": "V123456",
+  "sections": [
+    {
+      "id": "registration",
+      "title": "Inschrijving & nummerplaat",
+      "fields": [
+        {
+          "name": "nummerplaat",
+          "label": "Nummerplaat",
+          "type": "text",
+          "value": "1-JJY-521",
+          "placeholder": "Voer nummerplaat in",
+          "validation": {
+            "required": true,
+            "pattern": "^[0-9]-[A-Z]{3}-[0-9]{3}$",
+            "message": "Geldig Nederlands kenteken vereist"
+          }
+        },
+        {
+          "name": "formatNummerplaat",
+          "label": "Formaat nummerplaat",
+          "type": "select",
+          "value": "Rechthoekig",
+          "options": ["Rechthoekig", "Vierkant", "Oldtimer"],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "gepersonaliseerdeNummerplaat",
+          "label": "Gepersonaliseerde nummerplaat",
+          "type": "boolean",
+          "value": false,
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "inschrijvingsdatum",
+          "label": "Inschrijvingsdatum",
+          "type": "date",
+          "value": "2025-01-01",
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "ingebruikstellingsdatum",
+          "label": "Ingebruikstellingsdatum",
+          "type": "date",
+          "value": "2025-01-01",
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "formuliernummer",
+          "label": "Formuliernr. (X12)",
+          "type": "text",
+          "value": "342312999532",
+          "validation": {
+            "required": true,
+            "minLength": 10,
+            "maxLength": 15
+          }
+        }
+      ]
+    },
+    {
+      "id": "technical",
+      "title": "Technische gegevens",
+      "fields": [
+        {
+          "name": "aantalKilometersPerJaar",
+          "label": "Aantal kilometers per jaar (max.)",
+          "type": "number",
+          "value": 25000,
+          "suffix": "km",
+          "validation": {
+            "required": true,
+            "min": 1000,
+            "max": 100000
+          }
+        },
+        {
+          "name": "kilometertellerstand",
+          "label": "Kilometertellerstand",
+          "type": "number",
+          "value": 75000,
+          "suffix": "km",
+          "validation": {
+            "required": true,
+            "min": 0
+          }
+        },
+        {
+          "name": "vermogen",
+          "label": "Vermogen (kW)",
+          "type": "number",
+          "value": 120,
+          "suffix": "kW",
+          "validation": {
+            "required": true,
+            "min": 1
+          }
+        },
+        {
+          "name": "co2Uitstoot",
+          "label": "CO₂-uitstoot (g/km)",
+          "type": "number",
+          "value": 100,
+          "suffix": "g/km",
+          "validation": {
+            "required": true,
+            "min": 0
+          }
+        },
+        {
+          "name": "chassisnummer",
+          "label": "Chassisnummer",
+          "type": "text",
+          "value": "JMZMA18P300211673",
+          "validation": {
+            "required": true,
+            "minLength": 17,
+            "maxLength": 17
+          }
+        },
+        {
+          "name": "transmissietype",
+          "label": "Transmissietype",
+          "type": "select",
+          "value": "Automatisch",
+          "options": ["Handgeschakeld", "Automatisch", "CVT"],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "brandstoftype",
+          "label": "Brandstoftype",
+          "type": "select",
+          "value": "Diesel",
+          "options": ["Benzine", "Diesel", "Elektrisch", "Hybride", "LPG"],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "bouwjaar",
+          "label": "Bouwjaar",
+          "type": "number",
+          "value": 2019,
+          "validation": {
+            "required": true,
+            "min": 1900,
+            "max": 2025
+          }
+        },
+        {
+          "name": "cilinderinhoud",
+          "label": "Cilinderinhoud",
+          "type": "number",
+          "value": 2000,
+          "suffix": "cc",
+          "validation": {
+            "required": true,
+            "min": 50
+          }
+        },
+        {
+          "name": "aantalZetels",
+          "label": "Aantal zetels",
+          "type": "number",
+          "value": 5,
+          "validation": {
+            "required": true,
+            "min": 1,
+            "max": 50
+          }
+        },
+        {
+          "name": "aantalDeuren",
+          "label": "Aantal deuren",
+          "type": "number",
+          "value": 4,
+          "validation": {
+            "required": true,
+            "min": 2,
+            "max": 10
+          }
+        },
+        {
+          "name": "kleur",
+          "label": "Kleur",
+          "type": "select",
+          "value": "Zwart",
+          "options": [
+            "Wit",
+            "Zwart",
+            "Grijs",
+            "Blauw",
+            "Rood",
+            "Groen",
+            "Bruin",
+            "Geel",
+            "Oranje"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "datumLaatsteOverzicht",
+          "label": "Datum laatste overzicht",
+          "type": "date",
+          "value": "2025-01-01",
+          "validation": {
+            "required": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "characteristics",
+      "title": "Voertuigkenmerken",
+      "fields": [
+        {
+          "name": "voertuigsoort",
+          "label": "Voertuigsoort",
+          "type": "select",
+          "value": "AA - Sedan",
+          "options": [
+            "AA - Sedan",
+            "AB - Hatchback",
+            "AC - Station",
+            "AD - Coupé",
+            "AE - Cabriolet"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "tweedehandsvoertuig",
+          "label": "Tweedehandsvoertuig",
+          "type": "boolean",
+          "value": false,
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "gebruikstype",
+          "label": "Gebruikstype",
+          "type": "select",
+          "value": "Gemengd gebruik",
+          "options": ["Zakelijk gebruik", "Privé gebruik", "Gemengd gebruik"],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "stallingstype",
+          "label": "Stallingstype",
+          "type": "select",
+          "value": "Privé garage",
+          "options": [
+            "Openbare weg",
+            "Privé garage",
+            "Bewaakte parkeerplaats",
+            "Carport"
+          ],
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "bestuurderIsVerzekeringsnemer",
+          "label": "Bestuurder is verzekeringsnemer",
+          "type": "boolean",
+          "value": true,
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "sportwagen",
+          "label": "Sportwagen",
+          "type": "boolean",
+          "value": false,
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "cabriolet",
+          "label": "Cabriolet",
+          "type": "boolean",
+          "value": false,
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "coupe",
+          "label": "Coupé",
+          "type": "boolean",
+          "value": false,
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "terreinwagen",
+          "label": "Terreinwagen",
+          "type": "boolean",
+          "value": false,
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "voertuigAangepast",
+          "label": "Voertuig aangepast",
+          "type": "boolean",
+          "value": false,
+          "validation": {
+            "required": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "title": "Beveiliging & diefstalpreventie",
+      "fields": [
+        {
+          "name": "erkendAntiDiefstalSysteem",
+          "label": "Erkend anti-diefstal systeem",
+          "type": "boolean",
+          "value": true,
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "antiDiefstalType1",
+          "label": "Anti-diefstal type 1",
+          "type": "text",
+          "value": "AL1",
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "antiDiefstalType2",
+          "label": "Anti-diefstal type 2",
+          "type": "text",
+          "value": "AL2",
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "antiDiefstalType3",
+          "label": "Anti-diefstal type 3",
+          "type": "text",
+          "value": "",
+          "validation": {
+            "required": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "weights",
+      "title": "Gewichten & Trekkracht",
+      "fields": [
+        {
+          "name": "maxToegelatenGewicht",
+          "label": "Max. toegelaten gewicht (kg)",
+          "type": "number",
+          "value": 1000,
+          "suffix": "kg",
+          "validation": {
+            "required": true,
+            "min": 500
+          }
+        },
+        {
+          "name": "tarra",
+          "label": "Tarra (kg)",
+          "type": "number",
+          "value": 2200,
+          "suffix": "kg",
+          "validation": {
+            "required": true,
+            "min": 500
+          }
+        },
+        {
+          "name": "tractieAanhangwagen",
+          "label": "Tractie aanhangwagen > 750kg",
+          "type": "boolean",
+          "value": true,
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "krachtVanDeTrekhaak",
+          "label": "Kracht van de trekhaak",
+          "type": "text",
+          "value": "Trekhaak tot 3500kg",
+          "validation": {
+            "required": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "insurance",
+      "title": "Waarde & verzekering",
+      "fields": [
+        {
+          "name": "cataloguswaardeZonderOpties",
+          "label": "Cataloguswaarde zonder opties (excl. BTW)",
+          "type": "currency",
+          "value": 53234.12,
+          "currency": "EUR",
+          "validation": {
+            "required": true,
+            "min": 0
+          }
+        },
+        {
+          "name": "cataloguswaardeMetOpties",
+          "label": "Cataloguswaarde zonder opties (incl. BTW)",
+          "type": "currency",
+          "value": 53234.12,
+          "currency": "EUR",
+          "validation": {
+            "required": true,
+            "min": 0
+          }
+        },
+        {
+          "name": "toebehorenwaardeExclBtw",
+          "label": "Toebehorenwaarde (excl. BTW)",
+          "type": "currency",
+          "value": 53234.12,
+          "currency": "EUR",
+          "validation": {
+            "required": false,
+            "min": 0
+          }
+        },
+        {
+          "name": "totaalwaardeMetOptiesEnToebehoren",
+          "label": "Totaalwaarde met opties en toebehoren (excl. BTW)",
+          "type": "currency",
+          "value": 53234.12,
+          "currency": "EUR",
+          "validation": {
+            "required": true,
+            "min": 0
+          }
+        },
+        {
+          "name": "factuurbedragExclBtw",
+          "label": "Factuurbedrag (excl. BTW)",
+          "type": "currency",
+          "value": 73236.12,
+          "currency": "EUR",
+          "validation": {
+            "required": false,
+            "min": 0
+          }
+        },
+        {
+          "name": "factuurbedragInclBtw",
+          "label": "Factuurbedrag (incl. BTW)",
+          "type": "currency",
+          "value": 73236.12,
+          "currency": "EUR",
+          "validation": {
+            "required": false,
+            "min": 0
+          }
+        },
+        {
+          "name": "teVerzekerenWaardeExclBtw",
+          "label": "Te verzekeren waarde (excl. BTW)",
+          "type": "currency",
+          "value": 73236.12,
+          "currency": "EUR",
+          "validation": {
+            "required": true,
+            "min": 0
+          }
+        },
+        {
+          "name": "soortTeVerzekerenWaarde",
+          "label": "Soort te verzekeren waarde",
+          "type": "text",
+          "value": "Factuurbedrag (excl. BTW)",
+          "validation": {
+            "required": true
+          }
+        },
+        {
+          "name": "factuurdatum",
+          "label": "Factuurdatum",
+          "type": "date",
+          "value": "2025-01-01",
+          "validation": {
+            "required": false
+          }
+        },
+        {
+          "name": "btwPercentage",
+          "label": "Btw-percentage",
+          "type": "percentage",
+          "value": 21,
+          "validation": {
+            "required": true,
+            "min": 0,
+            "max": 100
+          }
+        },
+        {
+          "name": "recupereerbaareBtw",
+          "label": "Recupereerbare BTW%",
+          "type": "percentage",
+          "value": 0,
+          "validation": {
+            "required": false,
+            "min": 0,
+            "max": 100
+          }
+        },
+        {
+          "name": "inverdienstellingstaks",
+          "label": "Inverdienstellingstaks",
+          "type": "currency",
+          "value": 412.32,
+          "currency": "EUR",
+          "validation": {
+            "required": false,
+            "min": 0
+          }
+        },
+        {
+          "name": "financiering",
+          "label": "Financiering",
+          "type": "boolean",
+          "value": true,
+          "validation": {
+            "required": true
+          }
+        }
+      ]
+    }
+  ]
+}
